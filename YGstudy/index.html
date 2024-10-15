@@ -47,20 +47,18 @@
 
         }
 
-        .time::before {
-            content: '';
-            position: absolute;
-            bottom: 50%;
-            left: 100%;
-            /* 三角形靠右 */
-            transform: translateY(50%);
-            width: 20px;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 30px solid transparent;
-            border-left: 15px solid #ed0b0b;
-            /* 红色三角形，指向右 */
-        }
+     .time::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -50px; /* 通过增大这个值来向右平移三角形 */
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 30px solid red; /* 增加 border-left 宽度来拉长三角形 */
+}
 
         .shenti {
             margin-top: 100px;
