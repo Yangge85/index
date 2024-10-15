@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器v3.0</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+            text-align: left;
+            position: relative;
+        }
+
+        input {
+            width: calc(80% - 10px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .clear-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 7px 10px;
+            background-color: #ddd;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+        <h2>计算器v3.0（2024.5.31）</h2>
+        <div class="input-group">
+            <label for="widthInput">宽：</label>
+            <input type="number" id="widthInput" placeholder="宽">
+            <button class="clear-button" onclick="clearInput('widthInput')">清空</button>
+        </div>
+        <div class="input-group">
+            <label for="depthInput">深：</label>
+            <input type="number" id="depthInput" placeholder="深">
+            <button class="clear-button" onclick="clearInput('depthInput')">清空</button>
+        </div>
+        <div class="input-group">
+            <label for="rInput">R ：</label>
+            <input type="number" id="rInput" placeholder="R">
+            <button class="clear-button" onclick="clearInput('rInput')">清空</button>
+        </div>
+        <button onclick="calculate()">计算</button>
+        <button onclick="clearInputs()">全部清空</button>
+    </div>
+
+    <script>
+        function calculate() {
+            var width = parseFloat(document.getElementById('widthInput').value);
+            var depth = parseFloat(document.getElementById('depthInput').value);
+            var r = parseFloat(document.getElementById('rInput').value);
+
+            if (!isNaN(width) && !isNaN(depth) && isNaN(r)) {
+                var calculatedR = (width * width + depth * depth) / (4 * depth);
+                document.getElementById('rInput').value = calculatedR.toFixed(2);
+            } else if (!isNaN(width) && isNaN(depth) && !isNaN(r)) {
+                var discriminant = 4 * r * r - width * width;
+                if (discriminant >= 0) {
+                    var calculatedDepth = (2 * r - Math.sqrt(discriminant)) / 1;
+                    document.getElementById('depthInput').value = calculatedDepth.toFixed(2);
+                } else {
+                    alert('无效的参数组合。请确保输入的值可以得到实数解。');
+                }
+            } else if (isNaN(width) && !isNaN(depth) && !isNaN(r)) {
+                var calculatedWidth = Math.sqrt(4 * r * depth - depth * depth);
+                document.getElementById('widthInput').value = calculatedWidth.toFixed(2);
+            } else if (!isNaN(width) && isNaN(depth) && !isNaN(r)) {
+                var discriminant = 4 * r * r - width * width;
+                if (discriminant >= 0) {
+                    var calculatedDepth = (2 * r + Math.sqrt(discriminant)) / 1;
+                    document.getElementById('depthInput').value = depth.toFixed(2) + ", " + calculatedDepth.toFixed(2);
+                } else {
+                    alert('无效的参数组合。请确保输入的值可以得到实数解。');
+                }
+            } else {
+                alert('请确保填入两个值，并留空一个值来计算。');
+            }
+        }
+
+        function clearInputs() {
+            document.getElementById('widthInput').value = '';
+            document.getElementById('depthInput').value = '';
+            document.getElementById('rInput').value = '';
+        }
+
+        function clearInput(id) {
+            document.getElementById(id).value = '';
+        }
+    </script>
+
+</body>
+
+</html>

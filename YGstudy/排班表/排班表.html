@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排班表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            /* 禁止水平滚动 */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            /* 调整标题字体大小 */
+            margin: 20px 0;
+        }
+
+        .container {
+            width: 95%;
+            /* 页面宽度缩小5% */
+            max-width: 950px;
+            /* 确保在大屏幕上也缩小 */
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 日期选择部分靠右对齐 */
+        .date-container {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1rem;
+            /* 调整选择日期标签字体大小 */
+        }
+
+        input[type="date"] {
+            font-size: 1rem;
+        }
+
+        .schedule {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            /* 调整表格字体大小 */
+            table-layout: fixed;
+            /* 防止表格超出边界 */
+        }
+
+        .schedule th,
+        .schedule td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        /* 缩小日期列的宽度 */
+        .schedule th.date-col,
+        .schedule td.date-col {
+            width: 90px;
+            /* 设置固定宽度 */
+        }
+
+        .schedule th {
+            background-color: #f4f4f4;
+        }
+
+        .weekend {
+            color: red;
+            font-weight: bold;
+        }
+
+        .schedule tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* 在小屏幕上自适应 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            label,
+            input[type="date"],
+            .schedule th,
+            .schedule td {
+                font-size: 0.8rem;
+                padding: 5px;
+            }
+
+            /* 缩小日期列的宽度在移动端 */
+            .schedule th.date-col,
+            .schedule td.date-col {
+                width: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>前韩家庄驻村工作队排班表</h1>
+
+        <!-- 日期选择部分 -->
+        <div class="date-container">
+            <label for="date">选择日期：</label>
+            <input type="date" id="date" />
+        </div>
+
+        <!-- 排班表 -->
+        <table id="schedule" class="schedule">
+            <thead>
+                <tr>
+                    <th class="date-col">日期</th>
+                    <th>星期</th>
+                    <th>主班</th>
+                    <th>副班</th>
+                    <th>副班</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        const persons = [
+            ['杜　阳', '左平周', '王勇伟'],  // 9月1日，杜阳用全角空格调整宽度
+            ['王勇伟', '杜　阳', '左平周'],  // 9月2日
+            ['左平周', '王勇伟', '杜　阳']   // 9月3日
+        ];
+
+        const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+
+        // 计算两个日期之间的天数差
+        function daysBetween(startDate, endDate) {
+            const oneDay = 24 * 60 * 60 * 1000; // 一天的毫秒数
+            return Math.floor((endDate - startDate) / oneDay);
+        }
+
+        function generateSchedule(startDate) {
+            const tbody = document.querySelector('#schedule tbody');
+            tbody.innerHTML = '';  // 清空之前的内容
+
+            const baseDate = new Date(2024, 8, 1); // 起始日期设定为2024年9月1日（0基的月份）
+
+            for (let i = 0; i < 7; i++) {
+                const currentDate = new Date(startDate);
+                currentDate.setDate(currentDate.getDate() + i);
+
+                // 计算从起始日期到当前日期的累积天数
+                const totalDays = daysBetween(baseDate, currentDate);
+                const cycleIndex = totalDays % 3;  // 使用累积天数进行循环
+
+                const [primary, secondary, tertiary] = persons[cycleIndex];
+
+                // 使用 toLocaleDateString() 格式化日期为 yyyy-mm-dd
+                const dateStr = currentDate.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+                const weekDay = weekDays[currentDate.getDay()];
+
+                // 检查是否是周末
+                const isWeekend = currentDate.getDay() === 0 || currentDate.getDay() === 6;
+                const dateClass = isWeekend ? 'weekend' : '';
+
+                // 添加一行到表格
+                const rowHTML = `
+                    <tr>
+                        <td class="date-col ${dateClass}">${dateStr}</td>
+                        <td class="${dateClass}">${weekDay}</td>
+                        <td>${primary}</td>
+                        <td>${secondary}</td>
+                        <td>${tertiary}</td>
+                    </tr>
+                `;
+
+                tbody.innerHTML += rowHTML;
+            }
+        }
+
+        // 页面加载时显示今天及未来7天的排班
+        window.onload = function () {
+            const today = new Date();
+            generateSchedule(today);
+        };
+
+        // 当用户选择了日期后，显示从该日期开始的7天排班
+        document.getElementById('date').addEventListener('change', function () {
+            const selectedDate = new Date(this.value);
+            generateSchedule(selectedDate);
+        });
+    </script>
+</body>
+
+</html>

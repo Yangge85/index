@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="utf-8">
+    <title>手写板</title>
+    <style>
+        body {
+
+            overscroll-behavior-y: none;
+        }
+
+        #canvas {
+            border-style: none;
+            /* margin-top: -100px; */
+
+        }
+
+        #button-container {
+            font-size: 15px;
+            position: absolute;
+            font-size: 15px;
+            width: 60px;
+            height: 30px;
+            /* width: 100%; */
+
+        }
+
+        #button-container button,
+        #button-container select,
+        #button-container input {
+            font-size: 18px;
+            width: 30px;
+            height: 60px;
+            /* margin: 0 10px; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="button-container">
+
+
+
+        <input type="color" id="penColor" value="#000000">
+        <select id="penSize">
+            <option value="2">细</option>
+            <option value="5" selected>中</option>
+            <option value="10">粗</option>
+            <option value="20">超<br>粗</option>
+            <option value="30">特<br>粗</option>
+        </select>
+
+
+        <br>
+
+
+
+        <button id="undoButton">撤<br>销</button>
+        <button id="redoButton">前<br>进</button>
+        <button id="brushButton">画<br>笔</button>
+        <button id="eraserButton">橡<br>皮</button>
+        <button id="clearButton">清<br>空</button>
+
+        <br>
+
+        <div class="undo-redo-buttons"></div>
+    </div>
+    <hr>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var drawing = false;
+
+        canvas.addEventListener('touchstart', function (e) {
+            drawing = true;
+            var touch = e.touches[0];
+            ctx.beginPath();
+            ctx.moveTo(touch.clientX - canvas.getBoundingClientRect().left, touch.clientY - canvas.getBoundingClientRect().top);
+        });
+
+        canvas.addEventListener('touchmove', function (e) {
+            if (drawing) {
+                var touch = e.touches[0];
+                ctx.lineTo(touch.clientX - canvas.getBoundingClientRect().left, touch.clientY - canvas.getBoundingClientRect().top);
+                ctx.stroke();
+            }
+        });
+
+        canvas.addEventListener('touchend', function () {
+            drawing = false;
+        });
+        // 禁止下拉刷新
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        }, { passive: false });
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var painting = false;
+        var isErasing = false;
+        var drawingShape = false;
+        var shapeType = null;
+        var shapeStartX = 0;
+        var shapeStartY = 0;
+        var undoStack = [];
+        var redoStack = [];
+        var penSizeSelect = document.getElementById('penSize');
+        var penColorInput = document.getElementById('penColor');
+
+        // 尝试从本地存储中获取笔号和颜色的值
+        var storedPenSize = localStorage.getItem('penSize');
+        var storedPenColor = localStorage.getItem('penColor');
+
+        // 如果本地存储中有存储的值，将其应用到选择框和输入框
+        if (storedPenSize) {
+            penSizeSelect.value = storedPenSize;
+        }
+        if (storedPenColor) {
+            penColorInput.value = storedPenColor;
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight * 0.9;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // 函数用于更新笔号和颜色并保存到本地存储
+        function updatePenSettings() {
+            var penSize = penSizeSelect.value;
+            var penColor = penColorInput.value;
+            context.lineWidth = penSize;
+            context.strokeStyle = penColor;
+            // 保存到本地存储
+            localStorage.setItem('penSize', penSize);
+            localStorage.setItem('penColor', penColor);
+        }
+
+        // 添加事件监听器以在选择发生变化时触发更新
+        penSizeSelect.addEventListener('change', updatePenSettings);
+        penColorInput.addEventListener('input', updatePenSettings);
+
+        canvas.addEventListener('touchstart', function (e) {
+            e.preventDefault(); // 阻止默认事件，以防止页面滚动
+            painting = true;
+            var touch = e.touches[0];
+            if (drawingShape) {
+                shapeStartX = touch.clientX - canvas.getBoundingClientRect().left;
+                shapeStartY = touch.clientY - canvas.getBoundingClientRect().top;
+            } else {
+                if (isErasing) {
+                    context.globalCompositeOperation = 'destination-out';
+                    context.lineWidth = penSizeSelect.value * 2;
+                } else {
+                    context.globalCompositeOperation = 'source-over';
+                    context.lineWidth = penSizeSelect.value;
+                    context.strokeStyle = penColorInput.value;
+                }
+                context.lineJoin = 'round';
+                context.lineCap = 'round';
+                context.beginPath();
+                context.moveTo(touch.clientX - canvas.getBoundingClientRect().left, touch.clientY - canvas.getBoundingClientRect().top);
+            }
+        });
+
+        canvas.addEventListener('touchmove', function (e) {
+            e.preventDefault(); // 阻止默认事件，以防止页面滚动
+            var touch = e.touches[0];
+            if (painting) {
+                if (drawingShape) {
+                    // 清除之前的图形
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    // 绘制图形
+                    if (shapeType === 'square') {
+                        var width = touch.clientX - canvas.getBoundingClientRect().left - shapeStartX;
+                        var height = touch.clientY - canvas.getBoundingClientRect().top - shapeStartY;
+                        context.strokeRect(shapeStartX, shapeStartY, width, height);
+                    } else if (shapeType === 'triangle') {
+                        var x = (shapeStartX + (touch.clientX - canvas.getBoundingClientRect().left)) / 2;
+                        context.beginPath();
+                        context.moveTo(shapeStartX, touch.clientY - canvas.getBoundingClientRect().top);
+                        context.lineTo(touch.clientX - canvas.getBoundingClientRect().left, touch.clientY - canvas.getBoundingClientRect().top);
+                        context.lineTo(x, shapeStartY);
+                        context.closePath();
+                        context.stroke();
+                    }
+                } else {
+                    context.lineTo(touch.clientX - canvas.getBoundingClientRect().left, touch.clientY - canvas.getBoundingClientRect().top);
+                    context.stroke();
+                }
+            }
+        });
+
+        canvas.addEventListener('touchend', function () {
+            if (painting) {
+                if (isErasing) {
+                    context.globalCompositeOperation = 'source-over';
+                }
+                if (drawingShape) {
+                    drawingShape = false;
+                } else {
+                    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                    undoStack.push(imageData);
+                    redoStack.length = 0;
+                }
+            }
+        });
+
+        var clearButton = document.getElementById('clearButton');
+        clearButton.addEventListener('click', function () {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            undoStack.length = 0;
+            redoStack.length = 0;
+        });
+
+        var eraserButton = document.getElementById('eraserButton');
+        eraserButton.addEventListener('click', function () {
+            isErasing = !isErasing;
+        });
+
+        var undoButton = document.getElementById('undoButton');
+        undoButton.addEventListener('click', function () {
+            if (undoStack.length > 0) {
+                redoStack.push(context.getImageData(0, 0, canvas.width, canvas.height));
+                context.putImageData(undoStack.pop(), 0, 0);
+            }
+        });
+
+        var redoButton = document.getElementById('redoButton');
+        redoButton.addEventListener('click', function () {
+            if (redoStack.length > 0) {
+                undoStack.push(context.getImageData(0, 0, canvas.width, canvas.height));
+                context.putImageData(redoStack.pop(), 0, 0);
+            }
+        });
+
+        var brushButton = document.getElementById('brushButton');
+        brushButton.addEventListener('click', function () {
+            isErasing = false;
+        });
+
+        var squareButton = document.getElementById('squareButton');
+        squareButton.addEventListener('click', function () {
+            drawingShape = true;
+            shapeType = 'square';
+        });
+
+        var triangleButton = document.getElementById('triangleButton');
+        triangleButton.addEventListener('click', function () {
+            drawingShape = true;
+            shapeType = 'triangle';
+        });
+    </script>
+</body>
+
+</html>

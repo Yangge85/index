@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>修改密码</title>
+    <style>
+        body {
+            font-family: "微软雅黑", serif;
+            background: #f5f5f5;
+        }
+        .leftimg {
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin-top: 10px;
+        }
+        .cinput {
+            width: 90%;
+            height: 35px;
+            line-height: 35px;
+            padding-left: 10px;
+            color: #D3D3D3;
+            border: none;
+            background: #FFFFFF;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        function pwdoldKeyDown(event) {
+            var keycode = (Number)(event.keyCode);
+            if (keycode === 13) {
+                document.getElementById('pwd1').onfocus();
+            }
+        }
+
+        function pwd1KeyDown(event) {
+            var keycode = (Number)(event.keyCode);
+            if (keycode === 13) {
+                document.getElementById('pwd2').onfocus();
+            }
+        }
+
+        function pwd2KeyDown(event) {
+            var keycode = (Number)(event.keyCode);
+            if (keycode === 13) {
+                regws()
+            }
+        }
+    </script>
+</head>
+<body scroll="no" oncontextmenu=self.event.returnValue=false style="margin: 0">
+<div style="width: 100%;height: 100%;background: #FFFFFF;text-align: center;">
+<!--    标题-->
+    <div style="width: 80%;height: 44px;font-size: 18pt;font-weight: bold;color: #1890ff;margin-bottom: 20px;margin-top: 20px;border-bottom:2px solid #1890ff">
+        修改密码
+    </div>
+<!--    输入框-->
+    <div style="height: 40px;width:80%;border-bottom: 1px solid #d0d0d0;margin-bottom: 20px">
+        <img class="leftimg"
+             src="images/regpwd.JPG"/>
+        <input id="pwdold" class="cinput" type="text" value="请输入原密码" placeholder="请输入原密码"
+               onfocus="var userI=document.getElementById('pwdold');if (userI.value==='请输入原密码'){userI.value='';userI.style.color='#000000'}"
+               onblur="var userI=document.getElementById('pwdold');if (userI.value===''){userI.value='请输入原密码';userI.style.color='#D3D3D3'}"
+               onkeydown="pwdoldKeyDown(event)" />
+    </div>
+    <div style="height: 40px;width:80%;border-bottom: 1px solid #d0d0d0;margin-bottom: 20px">
+        <img class="leftimg"
+             src="images/regpwd.JPG"/>
+        <input id="pwd1" class="cinput" type="text" value="请输入新密码" placeholder="请输入新密码"
+               onfocus="var userI=document.getElementById('pwd1');if (userI.value==='请输入新密码'){userI.value='';userI.style.color='#000000'}"
+               onblur="var userI=document.getElementById('pwd1');if (userI.value===''){userI.value='请输入新密码';userI.style.color='#D3D3D3'}"
+               onkeydown="pwd1KeyDown(event)" />
+    </div>
+    <div style="height: 40px;width:80%;border-bottom: 1px solid #d0d0d0;margin-bottom: 20px">
+        <img class="leftimg"
+             src="images/regpwd.JPG"/>
+        <input id="pwd2" class="cinput" type="text" value="请再次输入新密码" placeholder="请再次输入新密码"
+               onfocus="var userI=document.getElementById('pwd2');if (userI.value==='请再次输入新密码'){userI.value='';userI.style.color='#000000'}"
+               onblur="var userI=document.getElementById('pwd2');if (userI.value===''){userI.value='请再次输入新密码';userI.style.color='#D3D3D3'}"
+               onkeydown="pwd2KeyDown(event)" />
+    </div>
+<!--    按钮-->
+    <div style="margin-top: 30px;text-align: center">
+        <div style="display: block;float:left;width: 100px;height: 46px;line-height: 46px;text-align: center;font-size: 18px;color: #fff;background: #1890ff;cursor: pointer;margin-left: 105px;" onclick="changepwd()">确认</div>
+        <div style="display: block;float: left;width: 100px;height: 44px;line-height: 46px;text-align: center;font-size: 18px;color: #1890ff;cursor: pointer;margin-left: 20px;border-style:solid;border-width:1px;border-color:#1890ff " onclick="cancel()">取消</div>
+    </div>
+</div>
+<input name="hidden" type="hidden" ID="txtCommand" value="" style="display: none">
+<input name="button" type="button" ID="btnCallVB" style="display: none">
+</body>
+<script language="vbscript">
+   sub changepwd()
+       Dim pwdold
+       Dim pwd1
+       Dim pwd2
+       pwdold=Document.All("pwdold").Value
+       pwd1=Document.All("pwd1").Value
+       pwd2=Document.All("pwd2").Value
+       if pwdold="请输入原密码" then pwdold="" end if
+       if pwd1="请输入新密码" then pwd1="" end if
+       if pwd2="请再次输入新密码" then pwd2="" end if
+	   txtCommand.value="changepwd//" & pwdold & "//" & pwd1 & "//" & pwd2
+       btnCallVB.click
+	end sub
+
+	sub cancel()
+	    txtCommand.value="cancel//"
+        btnCallVB.click
+	end sub
+</script>
+
+<script language="javascript">
+
+    function KeyDown() {
+        // alert(window.event.keyCode);
+        if ((window.event.altKey) &&
+            ((window.event.keyCode == 37) || //屏蔽 Alt+ 方向键 ←
+                (window.event.keyCode == 39))) { //屏蔽 Alt+ 方向键 →
+            // alert("不准你使用ALT+方向键前进或后退网页！");
+            event.returnValue = false;
+        }
+        if ((event.keyCode == 8) || //屏蔽退格删除键
+            (event.keyCode == 116) || //屏蔽 F5 刷新键
+            (event.ctrlKey && event.keyCode == 82)) { //Ctrl + R
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if ((event.ctrlKey) && (event.keyCode == 78)) //屏蔽 Ctrl+n
+            event.returnValue = false;
+        if ((event.shiftKey) && (event.keyCode == 121)) //屏蔽 shift+F10
+            event.returnValue = false;
+        if (window.event.srcElement.tagName == "A" && window.event.shiftKey)
+            window.event.returnValue = false; //屏蔽 shift 加鼠标左键新开一网页
+        if ((window.event.altKey) && (window.event.keyCode == 115)) { //屏蔽Alt+F4
+            window.showModelessDialog("about:blank", "", "dialogWidth:1px;dialogheight:1px");
+            return false;
+        }
+    }
+    document.oncontextmenu = mylock1;
+    function mylock1() {
+        event.returnValue = false;
+    }
+    document.onkeydown = KeyDown
+    function KeyDown(e) {
+        if ((window.event.altKey) &&
+            ((window.event.keyCode == 37) ||     //屏蔽 Alt+ 方向键 ←
+                (window.event.keyCode == 39))) {    //屏蔽 Alt+ 方向键 →
+            alert("不准你使用ALT+方向键前进或后退网页！");
+            event.returnValue = false;
+        }
+        if ((event.keyCode == 116) ||                   //屏蔽 F5 刷新键
+            (event.keyCode == 112) ||                   //屏蔽 F1
+            (event.ctrlKey && event.keyCode == 82)) { //Ctrl + R
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if ((event.ctrlKey) && (event.keyCode == 78))     //屏蔽 Ctrl+n
+            event.returnValue = false;
+        if ((event.shiftKey) && (event.keyCode == 121)) //屏蔽 shift+F10
+            event.returnValue = false;
+        if (event.keyCode == 121) //屏蔽 F10
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 122) //屏蔽 F11
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 116) //屏蔽 F5
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 112) //屏蔽 F1
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 114) //屏蔽 F3
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (window.event.srcElement.tagName == "A" && window.event.shiftKey)
+            window.event.returnValue = false;    //屏蔽 shift 加鼠标左键新开一网页
+        if ((window.event.altKey) && (window.event.keyCode == 115)) { //屏蔽Alt+F4
+            window.showModelessDialog("about:blank", "", "dialogWidth:1px;dialogheight:1px");
+            return false;
+        }
+        if (event.keyCode == 8) //屏蔽删除键返回上一页
+        {
+            var ev = e || window.event;//获取event对象
+            var obj = ev.target || ev.srcElement;//获取事件源
+            var t = obj.type || obj.getAttribute('type');//获取事件源类型
+            //获取作为判断条件的事件类型
+            var vReadOnly = obj.getAttribute('readonly');
+            var vEnabled = obj.getAttribute('enabled');
+            //处理null值情况
+            vReadOnly = (vReadOnly == null) ? false : vReadOnly;
+            vEnabled = (vEnabled == null) ? true : vEnabled;
+            //当敲Backspace键时，事件源类型为密码或单行、多行文本的，
+            //并且readonly属性为true或enabled属性为false的，则退格键失效
+            var flag1 = (ev.keyCode == 8 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vEnabled != true)) ? true : false;
+            //当敲Backspace键时，事件源类型非密码或单行、多行文本的，则退格键失效
+            var flag2 = (ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea") ? true : false;
+            //判断
+            if (flag2) {
+                return false;
+            }
+            if (flag1) {
+                return false;
+            }
+        }
+        if (event.keyCode == 13) //屏蔽回车键打开文件夹
+        {
+            var ev = e || window.event;//获取event对象
+            var obj = ev.target || ev.srcElement;//获取事件源
+            var t = obj.type || obj.getAttribute('type');//获取事件源类型
+            //获取作为判断条件的事件类型
+            var vReadOnly = obj.getAttribute('readonly');
+            var vEnabled = obj.getAttribute('enabled');
+            //处理null值情况
+            vReadOnly = (vReadOnly == null) ? false : vReadOnly;
+            vEnabled = (vEnabled == null) ? true : vEnabled;
+            //当敲Backspace键时，事件源类型为密码或单行、多行文本的，
+            //并且readonly属性为true或enabled属性为false的，则回车键失效
+            var flag1 = (ev.keyCode == 13 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vEnabled != true)) ? true : false;
+            //当敲回车键时，事件源类型非密码或单行、多行文本的，则退格键失效
+            var flag2 = (ev.keyCode == 13 && t != "password" && t != "text" && t != "textarea") ? true : false;
+            //判断
+            if (flag2) {
+                return false;
+            }
+            if (flag1) {
+                return false;
+            }
+        }
+    }
+
+</script>
+</html>

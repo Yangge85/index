@@ -1,0 +1,104 @@
+<HTML><HEAD><TITLE>电子邮件系统</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<LINK href="images/css.css" rel=stylesheet>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR><style type="text/css">
+<!--
+body {
+	background-color: #3B6D9E;
+}
+-->
+</style></HEAD>
+<BODY leftMargin=0 topMargin=0>
+
+<form action="wmReg.asp" id="FORM" method="post" name="Form"> 
+
+<TABLE height="100%" width="100%">
+  <TBODY>
+  <TR>
+    <TD vAlign=center align=middle>
+      <table width="643" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#205486">
+        <tr>
+          <td><table width="643" border="0" cellpadding="0" cellspacing="5" bgcolor="#D8EDFE">
+              <tr>
+                <td><table width="643" border="0" cellpadding="0" cellspacing="1" bgcolor="#205486">
+                    <tr>
+                      <td><table width="643" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td colspan="2"><img src="images/mail_03.gif" width="643" height="163" alt=""></td>
+                          </tr>
+                          <tr>
+                            <td width="237"><img src="images/mail_05.gif" width="237" height="240" alt=""></td>
+                            <td width="406" background="images/mail_06.gif" align=center><H3 align=center>邮箱注册</h3>
+                              <div align="center">
+                                <table border="0" width="90%">
+                                  <tr>
+                                      <td width="39%" height="20" align="right"><span class="unnamed1">帐号</span>：</td>
+                                    <td width="61%" align="center"><p align="left"><input type="text" id="user_no" name="user_no" size="14"><span class="unnamed1">(必填)</span></td>  
+                                  </tr>  
+                                  <tr>  
+                                      <td width="39%" height="20" align="right" class="unnamed1">密码：</td>   
+                                    <td width="61%" align="center"><p align="left">  <input type="password" id="user_pwd" name="user_pwd" size="14"><span class="unnamed1">(必填)</span></p></td>  
+                                  </tr>  
+                                    <tr>  
+                                      <td width="39%" height="20" align="right" class="unnamed1">重复输入密码：</td>  
+                                      <td width="61%" align="center"><p align="left"><input type="password" id="user_pwd2" name="user_pwd2" size="14"><span class="unnamed1">(必填)</span></p></td>  
+                                    </tr>  
+                                  <tr>  
+                                      <td width="39%" height="20" align="right" class="unnamed1">姓名：</td>  
+                                    <td width="61%" align="center"><p align="left"><input type="text" id="user_name" name="user_name" size="14"><span class="unnamed1">(必填)</span></p></td>  
+                                  </tr>  
+                                  <tr>  
+                                      <td width="39%" height="20" align="right" class="unnamed1">密码提示问题：</td>  
+                                    <td width="61%" align="center"><p align="left"><input type="text" id="user_ask" name="user_ask" size="31">  </td>  
+                                  </tr>  
+                                  <tr>  
+                                    <td width="39%" height="20" align="right" class="unnamed1">密码提示问题答案：</td>  
+                                    <td width="61%" align="center"><p align="left"><input type="text" id="user_asw" name="user_asw" size="31"></p></td>  
+                                  </tr>  
+                                </table>  
+                              </div>  
+                                <input type="submit" value="注册" name="B1" onclick="regWebMailUsers()">  
+                              &nbsp; <input type="button" value="取消" name="B2" onclick="history.back(-1)"> </td> 
+                          </tr> 
+                      </table></td> 
+                    </tr> 
+                </table></td> 
+              </tr> 
+          </table></td> 
+        </tr> 
+      </table>      </TD> 
+  </TR></TBODY></TABLE> 
+     <input name="hidden" type="hidden" ID="txtCommand" value="">
+     <input name="button" type="button" ID="btnCallVB" style="VISIBILITY: hidden"> 
+   </FORM> 
+</BODY>
+<script language="javascript">
+function regWebMailUsers()
+{
+   if(document.getElementById("user_no").vlaue=="")
+   {
+       alert("请输入邮箱帐号！");
+   }
+   else if(document.getElementById("user_pwd").vlaue=="")
+   {
+        alert("请输入密码！");
+   }
+   else if(document.getElementById("user_name").value=="")
+   {
+       alert("请输入姓名！");
+   }
+   else if(document.getElementById("user_pwd").value!=document.getElementById("user_pwd2").value)
+   {
+       alert("两次输入的密码不一致！");
+   }
+   else
+   {
+      var txtCom=document.getElementById("txtCommand");
+      var btnCallVB=document.getElementById("btnCallVB");
+      txtCom.value="regWebMailUser//"
+      btnCallVB.click();
+   }
+}
+
+</script>
+</HTML> 

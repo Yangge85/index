@@ -1,0 +1,463 @@
+<html>
+<head>
+    <title>模拟考试</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <style>
+
+        .header{
+            background-color: #00ABA5;
+            height: 66px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            padding: 0 30px 0 30px;
+        }
+
+        .main{
+            width: 100%;
+            position: absolute;
+            top: 66px;
+            bottom: 40px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            padding: 0 30px 0 30px;
+        }
+
+        .footer{
+            background-color: #F7F8FC;
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        .botombtn{
+            width:138px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            background: #00ABA5;
+            color: #FFFFFF;
+            font-weight: bold;
+            cursor: hand;
+            display: inline;
+            margin: 10px 10px 10px 10px;
+            border: 0 solid;
+        }
+
+        @font-face {
+            font-family: 'gkfont';   /*字体名称*/
+            src: url('font/PINGFANG BOLD.TTF');       /*字体源文件*/
+        }
+
+        .radius{
+            border: 1px solid #00ABA5;
+            /*padding: 60px 0;*/
+            text-align: center;
+            /*width: 200px;*/
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            behavior: url(PIE/PIE.htc); /* 可以让IE 6,7,8模拟部分的CSS3属性 */
+        }
+
+        .divsel{
+            text-align: center;
+            display: inline;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .divselsel{
+            text-align: center;
+            display: inline;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            background: #00ABA5;
+        }
+
+        .asel{
+            color: #6F727E;
+            cursor:hand;
+            font-size: 18px;
+            text-decoration: none;
+            text-align: center;
+            display: inline;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .aselsel{
+            color: #FFFFFF;
+            cursor:hand;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        .styletitle{
+            font-family: '黑体';
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .styletable{
+            border: 0;padding: 0px;width: 400px;border-spacing: 0;border-collapse: collapse
+        }
+
+        .styletxt{
+            font-weight: bold;height: 50px;width: 300px;text-align: center;font-size: 16px;color: #020202;background-color: #f5f6f8
+        }
+        .stylestst{
+            font-weight: bold;height: 50px;text-align: center;font-size: 16px;color: #020202;background-color: #f5f6f8
+        }
+
+        .styletxc{
+            height: 50px;width: 300px;text-align: left;font-size: 16px;padding-left:10px;border-bottom: 1px solid #ededed;background-color: #FFFFFF
+        }
+        .stylestsc{
+            height: 50px;text-align: right;font-size: 16px;padding-right:10px;border-bottom: 1px solid #ededed;background-color: #FFFFFF
+        }
+    </style>
+</head>
+<body style="margin: 0;padding:0;overflow: hidden">
+<div class="header">
+    <div style="position: absolute;width: 91px">
+        <img src="images/logo.jpg" alt="果考网石家庄网络技术有限公司">
+    </div>
+    <div id="proname" style="position: absolute;width: 100%;color: #FFFFFF;font-size: 28px;font-weight: bolder;padding: 20px 0 0 100px;font-family: gkfont,serif">
+
+    </div>
+    <div style="position: absolute;width: 100%;text-align: right;padding-top: 25px">
+        <div style="color: #FFFFFF;display: inline" id="stuunit">
+
+        </div>
+        <div style="color: #FFFFFF;display: inline">
+            |
+        </div>
+        <div style="color: #FFFFFF;display: inline" id="stuname">
+
+        </div>
+    </div>
+</div>
+
+<div id="mainbody" class="main" >
+    <div style="width: 100%;height:60px;line-height: 60px;padding-top: 8px;text-align: center;position: absolute;top: 0;background: #f7f8fc;border: 2px solid #eff1f7;margin-top: 20px">
+        <div class="divsel">
+            <a class="asel" href="DEFAULT.HTML">
+                首&nbsp&nbsp页
+            </a>
+        </div>
+        <div style="color: #4EBCB8;display: inline;margin: 0 10px 0 10px">
+            <a style="color: #6F727E;font-size: 18px;text-decoration: none;" >
+                |
+            </a>
+        </div>
+        <div class="divsel">
+            <a class="asel" onClick="StartPractice()">
+                我的练习
+            </a>
+        </div>
+        <div style="display: inline;margin: 0 10px 0 10px">
+            <a style="color: #6F727E;font-size: 18px;text-decoration: none;" >
+                |
+            </a>
+        </div>
+        <div class="divsel">
+            <a class="asel" onClick="StartCAI()">
+                网上学习
+            </a>
+        </div>
+        <div style="color: #4EBCB8;display: inline;margin: 0 10px 0 10px">
+            <a style="color: #6F727E;font-size: 18px;text-decoration: none;" >
+                |
+            </a>
+        </div>
+        <div class="divselsel radius">
+            <a class="aselsel" onClick="StartExm1()">
+                我的考试
+            </a>
+        </div>
+        <div style="color: #4EBCB8;display: inline;margin: 0 10px 0 10px">
+            <a style="color: #6F727E;font-size: 18px;text-decoration: none;" >
+                |
+            </a>
+        </div>
+        <div class="divsel">
+            <a class="asel" onClick="StartCustomTest()">
+                实验探究
+            </a>
+        </div>
+        <div style="color: #4EBCB8;display: inline;margin: 0 10px 0 10px">
+            <a style="color: #6F727E;font-size: 18px;text-decoration: none;" >
+                |
+            </a>
+        </div>
+        <div class="divsel">
+            <a class="asel" href="query.html">
+                学习档案
+            </a>
+        </div>
+    </div>
+
+    <div id="mainTD" style="width: 100%;text-align: center;position: absolute;top: 80px;overflow-y: scroll">
+        <div id="title" style="width: 100%;height: 40px;line-height: 40px;" class="styletitle">
+            高中信息技术课模拟测试
+        </div>
+        <div id="divExm2Info" style="width: 100%;">
+
+        </div>
+        <div style="width: 100%;">
+            <div id="btnContinue" class="botombtn radius" onclick="btnContinue_onclick()">
+                继&nbsp续&nbsp考&nbsp试
+            </div>
+            <div id="btnrestart" class="botombtn radius" onclick="btnrestart1_onclick()">
+                重&nbsp新&nbsp开&nbsp始
+            </div>
+            <div id="btnstart"class="botombtn radius" onclick="btnstart1_onclick()">
+                开&nbsp始
+            </div>
+            <div id="Image231" class="botombtn radius" onclick="btnback_onclick()">
+                返&nbsp回&nbsp列&nbsp表
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div style="position: absolute;width: 100%;height: 100%;text-align: center">
+        <p style="color: #A6A5A5">果考网石家庄网络技术有限公司 &nbsp&nbsp&nbsp&nbsp V2023.2</p>
+    </div>
+    <div style="position: absolute;right: 0;width: 100%;height: 100%;text-align: right;padding-right: 30px">
+        <p style="color: #A6A5A5">客服：0311-69031518</p>
+    </div>
+</div>
+<input type="hidden" style="display: none" name="txtCommand" size="1" id="txtCommand" value="divExm2Info">
+<input type="button" style="display: none" ID="btnCallVB" name="btnCallVB">
+</body>
+<script>
+    function setsize() {
+        try {
+            var divMain=document.getElementById("mainbody");
+            var divMainHeight=document.body.clientHeight-66-40;
+            divMain.style.height=divMainHeight+"px";
+
+            var divMain2=document.getElementById("mainTD");
+            var divMainHeight2=document.body.clientHeight-66-40-80-40;
+            var divMainWidth2=document.body.clientWidth-60;
+            divMain2.style.height=divMainHeight2+"px";
+            divMain2.style.width=divMainWidth2+"px";
+        }catch (e){
+
+        }
+    }
+
+    window.onresize =function () {
+        setsize();
+    }
+
+    setsize();
+</script>
+<script language="vbscript">
+    sub ChangeStuPwd()
+	   txtCommand.value="CHANGEPWD//"
+       btnCallVB.click
+	end sub
+	sub logout()
+	   txtCommand.value="logout//"
+       btnCallVB.click
+	end sub
+ 	sub StartExm1()
+	   txtCommand.value="STARTEXM//"
+       btnCallVB.click
+	end sub
+ 	sub StartCai()
+	   txtCommand.value="STARTCAI//"
+       btnCallVB.click
+	end sub
+	sub StartCustomTest()
+	   txtCommand.value="STARTCUSTOMTEST//"
+       btnCallVB.click
+	end sub
+	sub StartPractice()
+	   txtCommand.value="STARTPRACTICE//"
+       btnCallVB.click
+	end sub
+	sub UserOpinion()
+	   txtCommand.value="USEROPINION//"
+       btnCallVB.click
+	end sub
+	sub StartExam()
+	   txtCommand.value="STARTEXAM//"
+       btnCallVB.click
+	end sub
+	sub setserver()
+	   txtCommand.value="SETSERVER//"
+       btnCallVB.click
+	end sub
+ 	sub Back()
+ 	   txtCommand.value="BackLogin//"
+       btnCallVB.click
+ 	end sub
+    sub END_onclick()
+       txtCommand.value="backMyTest"
+       btnCallVB.click
+    end sub
+    sub btnContinue_onclick()
+       txtCommand.value="exam2StartC//"
+       btnCallVB.click
+    end sub
+    sub btnrestart1_onclick()
+       txtCommand.value="exam2Start//"
+       btnCallVB.click
+    end sub
+    sub btnstart1_onclick()
+       txtCommand.value="exam2Start//"
+       btnCallVB.click
+    end sub
+    sub btnback_onclick()
+       txtCommand.value="examback2"
+       btnCallVB.click
+    end sub
+    sub btnCallVB_onclick()
+
+    end sub
+</script>
+<script language="javascript">
+
+    function KeyDown() {
+        // alert(window.event.keyCode);
+        if ((window.event.altKey) &&
+            ((window.event.keyCode == 37) || //屏蔽 Alt+ 方向键 ←
+                (window.event.keyCode == 39))) { //屏蔽 Alt+ 方向键 →
+            // alert("不准你使用ALT+方向键前进或后退网页！");
+            event.returnValue = false;
+        }
+        if ((event.keyCode == 8) || //屏蔽退格删除键
+            (event.keyCode == 116) || //屏蔽 F5 刷新键
+            (event.ctrlKey && event.keyCode == 82)) { //Ctrl + R
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if ((event.ctrlKey) && (event.keyCode == 78)) //屏蔽 Ctrl+n
+            event.returnValue = false;
+        if ((event.shiftKey) && (event.keyCode == 121)) //屏蔽 shift+F10
+            event.returnValue = false;
+        if (window.event.srcElement.tagName == "A" && window.event.shiftKey)
+            window.event.returnValue = false; //屏蔽 shift 加鼠标左键新开一网页
+        if ((window.event.altKey) && (window.event.keyCode == 115)) { //屏蔽Alt+F4
+            window.showModelessDialog("about:blank", "", "dialogWidth:1px;dialogheight:1px");
+            return false;
+        }
+    }
+    document.oncontextmenu = mylock1;
+    function mylock1() {
+        event.returnValue = false;
+    }
+    document.onkeydown = KeyDown
+    function KeyDown(e) {
+        if ((window.event.altKey) &&
+            ((window.event.keyCode == 37) ||     //屏蔽 Alt+ 方向键 ←
+                (window.event.keyCode == 39))) {    //屏蔽 Alt+ 方向键 →
+            alert("不准你使用ALT+方向键前进或后退网页！");
+            event.returnValue = false;
+        }
+        if ((event.keyCode == 116) ||                   //屏蔽 F5 刷新键
+            (event.keyCode == 112) ||                   //屏蔽 F1
+            (event.ctrlKey && event.keyCode == 82)) { //Ctrl + R
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if ((event.ctrlKey) && (event.keyCode == 78))     //屏蔽 Ctrl+n
+            event.returnValue = false;
+        if ((event.shiftKey) && (event.keyCode == 121)) //屏蔽 shift+F10
+            event.returnValue = false;
+        if (event.keyCode == 121) //屏蔽 F10
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 122) //屏蔽 F11
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 116) //屏蔽 F5
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 112) //屏蔽 F1
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 114) //屏蔽 F3
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (window.event.srcElement.tagName == "A" && window.event.shiftKey)
+            window.event.returnValue = false;    //屏蔽 shift 加鼠标左键新开一网页
+        if ((window.event.altKey) && (window.event.keyCode == 115)) { //屏蔽Alt+F4
+            window.showModelessDialog("about:blank", "", "dialogWidth:1px;dialogheight:1px");
+            return false;
+        }
+        if (event.keyCode == 8) //屏蔽删除键返回上一页
+        {
+            var ev = e || window.event;//获取event对象
+            var obj = ev.target || ev.srcElement;//获取事件源
+            var t = obj.type || obj.getAttribute('type');//获取事件源类型
+            //获取作为判断条件的事件类型
+            var vReadOnly = obj.getAttribute('readonly');
+            var vEnabled = obj.getAttribute('enabled');
+            //处理null值情况
+            vReadOnly = (vReadOnly == null) ? false : vReadOnly;
+            vEnabled = (vEnabled == null) ? true : vEnabled;
+            //当敲Backspace键时，事件源类型为密码或单行、多行文本的，
+            //并且readonly属性为true或enabled属性为false的，则退格键失效
+            var flag1 = (ev.keyCode == 8 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vEnabled != true)) ? true : false;
+            //当敲Backspace键时，事件源类型非密码或单行、多行文本的，则退格键失效
+            var flag2 = (ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea") ? true : false;
+            //判断
+            if (flag2) {
+                return false;
+            }
+            if (flag1) {
+                return false;
+            }
+        }
+        if (event.keyCode == 13) //屏蔽回车键打开文件夹
+        {
+            var ev = e || window.event;//获取event对象
+            var obj = ev.target || ev.srcElement;//获取事件源
+            var t = obj.type || obj.getAttribute('type');//获取事件源类型
+            //获取作为判断条件的事件类型
+            var vReadOnly = obj.getAttribute('readonly');
+            var vEnabled = obj.getAttribute('enabled');
+            //处理null值情况
+            vReadOnly = (vReadOnly == null) ? false : vReadOnly;
+            vEnabled = (vEnabled == null) ? true : vEnabled;
+            //当敲Backspace键时，事件源类型为密码或单行、多行文本的，
+            //并且readonly属性为true或enabled属性为false的，则回车键失效
+            var flag1 = (ev.keyCode == 13 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vEnabled != true)) ? true : false;
+            //当敲回车键时，事件源类型非密码或单行、多行文本的，则退格键失效
+            var flag2 = (ev.keyCode == 13 && t != "password" && t != "text" && t != "textarea") ? true : false;
+            //判断
+            if (flag2) {
+                return false;
+            }
+            if (flag1) {
+                return false;
+            }
+        }
+    }
+
+</script>
+
+</html>

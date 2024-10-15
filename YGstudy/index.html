@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎来到YGG学前端</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            line-height: 80px;
+        }
+
+        header a {
+            /* scale: 0.3; */
+            position: absolute;
+            top: 0;
+            left: 0;
+
+        }
+
+        .time {
+
+
+            display: flex;
+            height: 80px;
+            margin-top: 0px;
+            display: block;
+            background-color: #b10909;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* justify-content: space-between; */
+
+        }
+
+        .time::before {
+            content: '';
+            position: absolute;
+            bottom: 50%;
+            left: 100%;
+            /* 三角形靠右 */
+            transform: translateY(50%);
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid #ed0b0b;
+            /* 红色三角形，指向右 */
+        }
+
+        .shenti {
+            margin-top: 100px;
+            padding: 20px;
+        }
+
+        .section {
+            border: 2px solid #333;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .link {
+            display: block;
+            background-color: #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.2s;
+        }
+
+        .link:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #333;
+            color: #bbb;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .searchfa {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #searchQuery {
+            width: 60%;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        #searchbtn {
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+
+        /* 日期右对齐 */
+        .leg1 {
+            margin: 0 auto;
+            text-align: left;
+            padding-bottom: 50px;
+        }
+
+        .leg2 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            display: block;
+            /* 确保 leg2 占一行 */
+        }
+
+        .legday {
+            margin-bottom: 10px;
+            font-size: 18px;
+            text-align: right;
+            display: block;
+            /* 确保 legday 占一行 */
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1 style="width: auto; height: 60px; line-height: 50px;">阳哥网页小程序制作分享网</h1>
+        <div class="time">
+            <span>YGG&reg; &nbsp;</span>
+        </div>
+    </header>
+
+    <div class="shenti">
+        <!-- 搜索框 -->
+        <div class="searchfa">
+            <input type="text" id="searchQuery" placeholder="请输入关键词">
+            <button id="searchbtn" onclick="searchBaidu()">百度</button>
+        </div>
+
+        <!-- 精品课程推荐 -->
+        <div class="section">
+            <h2>精品课程推荐</h2>
+            <a class="link" href="https://www.bilibili.com/video/BV1kM4y127Li?p=1">HTML-黑马程序员</a>
+            <a class="link" href="https://www.bilibili.com/video/BV1kM4y127Li?p=29">CSS-黑马程序员</a>
+            <a class="link"
+                href="https://www.bilibili.com/video/BV1Y84y1L7Nn/?spm_id_from=333.788.recommend_more_video.4">JavaScript-黑马程序员</a>
+        </div>
+
+        <!-- 开发工具 -->
+        <div class="section">
+            <h2>开发工具</h2>
+            <a class="link" href="https://www.bootcss.com/">Bootstrap框架</a>
+            <a class="link" href="https://developer.mozilla.org/zh-CN/">MDN文档查询</a>
+            <a class="link" href="https://cn.vuejs.org/">Vue.js</a>
+            <a class="link" href="https://code.visualstudio.com/">VSCode</a>
+            <a class="link" href="https://nodejs.cn/">Node.js</a>
+            <a class="link" href="https://www.iconfont.cn/">阿里巴巴IconFont</a>
+            <a class="link" href="https://uniapp.dcloud.net.cn/">Uni app</a>
+            <a class="link" href="https://gitee.com/">Gitee代码托管平台</a>
+            <a class="link" href="https://www.w3school.com.cn/index.html">W3school</a>
+            <a class="link" href="https://www.fancynode.com.cn/pxcook">像素大厨PxCook</a>
+
+        </div>
+
+        <!-- AI专区 -->
+        <div class="section">
+            <h2>AI专区</h2>
+            <a class="link" href="https://www.doubao.com/chat/">豆包</a>
+            <a class="link" href="https://www.aigc.cn/">AIGC导航</a>
+
+            <a class="link" href="https://chat.openai.com/">ChatGPT</a>
+            <a class="link" href="https://www.liblib.ai/">哩布哩布AI</a>
+            <a class="link"
+                href="https://www.bilibili.com/video/BV1iM4y1y7oA/?spm_id_from=333.999.0.0&vd_source=6b6b55f40873aa842b6a52b4efbc6e09">Stable
+                Diffusion</a>
+            <a class="link" href="https://js.design/workspace">即时设计</a>
+
+        </div>
+
+        <!-- 成果展示 -->
+        <div class="section">
+            <h2>成果展示</h2>
+            <a class="link" href="/YGstudy/排班表/排班表.html">排班表</a>
+            <a class="link" href="/YGstudy/车牌生成/index.html">车牌生成</a>
+            <a class="link" href="/YGstudy/股票收益分成/gupiaoshouyi/股票收益分成.html">股票收益分成</a>
+            <a class="link" href="/YGstudy/大象理财产品计算器/大象理财产品计算器.html">大象理财产品计算器</a>
+            <a class="link" href="/YGstudy/大象新闻/index.html">大象新闻</a>
+            <a class="link" href="/YGstudy/生男生女/生男生女.html">生男生女</a>
+            <a class="link" href="/YGstudy/双色球/双色球.html">双色球</a>
+            <a class="link" href="/YGstudy/水泥厂的孩子们/index.html">水泥厂的孩子们</a>
+            <a class="link" href="/YGstudy/大学的美好时光/index.html">大学的美好时光</a>
+            <a class="link" href="/YGstudy/儿歌点播/index.html">儿歌点播</a>
+            <a class="link" href="/YGstudy/抽奖/choujiang/index.html">抽奖</a>
+            <a class="link" href="/YGstudy/杜村/ducun.html">零件加工计算器</a>
+            <a class="link" href="/YGstudy/课程表/课程表.html">课程表</a>
+
+        </div>
+
+        <!-- 友情链接 -->
+        <div class="section">
+            <h2>友情链接</h2>
+            <a class="link" href="https://duhengsheng.gitee.io/count">爱算数和猜数字小游戏</a>
+            <a class="link" href="https://duhengsheng.gitee.io/mynavigation">我做过的网页</a>
+            <a class="link" href="https://duhengsheng.gitee.io/daxiang">大象新闻复制</a>
+            <a class="link" href="https://duhengsheng.gitee.io/mu4yu2">电子木鱼</a>
+            <a class="link" href="https://duhengsheng.gitee.io/new-year2">新年</a>
+
+        </div>
+
+        <!-- 心路历程 -->
+        <div class="section">
+            <h2>心路历程</h2>
+            <div class="leg1">
+                <div class="leg2">拥抱AI新技术，感受AI创造力。</div>
+                <div class="legday">------2023.9.22</div>
+
+                <div class="leg2">第四次工业革命：人工智能。</div>
+                <div class="legday">------2023.9.22</div>
+
+                <div class="leg2">欢迎来到YangGG学习网! ！！！ 保持学习、坚持学习、以兴趣驱动学习。</div>
+                <div class="legday">------2023.9.22</div>
+
+                <div class="leg2">截止2023年9月22日，共计2周基本学完HTML和CSS，准备攻克JS。</div>
+                <div class="legday">------2023.9.22</div>
+
+                <div class="leg2">祝大家中秋节国庆节双节快乐！</div>
+                <div class="legday">------2023.9.22</div>
+
+                <div class="leg2">人到底能有多厚颜无耻不得而知！</div>
+                <div class="legday">------2023.9.29</div>
+
+                <div class="leg2">今天学完了JS的各种循环。。。下面是函数！</div>
+                <div class="legday">------2023.9.29</div>
+
+                <div class="leg2">前端三件套基础知识基本学完，到此画个句号，结合ChatGPT来完成各种网页制作。</div>
+                <div class="legday">------2023.10.10</div>
+
+                <div class="leg2">全部移到github上，超级简单，用桌面版更好办。</div>
+                <div class="legday">------2024.9.12</div>
+
+                <div class="leg2">又是一年中秋节。时间过得真快！！！</div>
+                <div class="legday">------2024.9.12</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>&copy; 2023-2024 Yangge. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        // 百度搜索跳转
+        function searchBaidu() {
+            let query = document.getElementById("searchQuery").value;
+            if (query.trim() !== "") {
+                let url = "https://www.baidu.com/s?wd=" + encodeURIComponent(query);
+                window.location.href = url;
+            }
+        }
+    </script>
+</body>
+
+</html>

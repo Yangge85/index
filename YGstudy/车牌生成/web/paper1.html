@@ -1,0 +1,654 @@
+<html>
+<head>
+    <title>我的练习</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <style>
+        .style14 {
+            font-size: 14px;
+            color: #1890ff;
+        }
+        .header{
+            background-color: #00ABA5;
+            height: 66px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            padding: 0 30px 0 30px;
+        }
+
+        .main{
+            width: 100%;
+            position: absolute;
+            top: 126px;
+            bottom: 40px;
+            overflow-y: scroll;
+            padding: 0 30px 0 30px;
+        }
+
+        .footer{
+            background-color: #F7F8FC;
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        @font-face {
+            font-family: 'gkfont';   /*字体名称*/
+            src: url('font/PINGFANG BOLD.TTF');       /*字体源文件*/
+        }
+
+        .radius{
+            border: 1px solid #00ABA5;
+            /*padding: 60px 0;*/
+            text-align: center;
+            /*width: 200px;*/
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            background: #EEFF99;
+            behavior: url(PIE/PIE.htc); /* 可以让IE 6,7,8模拟部分的CSS3属性 */
+        }
+
+        .divsel{
+            text-align: center;
+            display: inline;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .divselsel{
+            text-align: center;
+            display: inline;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            background: #00ABA5;
+        }
+
+        .asel{
+            color: #6F727E;
+            cursor:hand;
+            font-size: 18px;
+            text-decoration: none;
+            text-align: center;
+            display: inline;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .aselsel{
+            color: #FFFFFF;
+            cursor:hand;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        body {
+            font-family: "微软雅黑";
+            overflow: scroll;
+        }
+
+        .prm{
+            font-size: 16px;
+            line-height:200%;
+            text-indent: 0em;
+            text-align: left;
+        }
+        .ans{
+            font-size: 16px;
+            margin-top: 7px;
+            line-height:200%;
+            text-indent: 0em;
+            text-align: left;
+        }
+        .styletitle{
+            font-family: '黑体';
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body style="margin: 0;padding:0;overflow: hidden">
+<div class="header">
+    <div style="position: absolute;width: 91px">
+        <img src="images/logo.jpg" alt="果考网石家庄网络技术有限公司">
+    </div>
+    <div id="proname" style="position: absolute;width: 100%;color: #FFFFFF;font-size: 28px;font-weight: bolder;padding: 20px 0 0 100px;font-family: gkfont,serif">
+
+    </div>
+    <div style="position: absolute;width: 100%;text-align: right;padding-top: 25px">
+        <div style="color: #FFFFFF;display: inline" id="stuunit">
+
+        </div>
+        <div style="color: #FFFFFF;display: inline">
+            |
+        </div>
+        <div style="color: #FFFFFF;display: inline" id="stuname">
+
+        </div>
+    </div>
+</div>
+<div style="position: absolute;width: 100%;text-align: left;top:66px;padding: 10px 20px 0 20px;height: 60px">
+    <div style="float: left;height: 40px;line-height: 40px">
+        <div style="display: inline;width: 200px;text-align: left;margin-right: 10px">
+            <div style="float: left;">试题类型：</div>
+            <div style="float: left;">
+                <select name="qsttype" style="font-size:16px;width:100%;margin-top: 8px">
+
+                </select>
+            </div>
+        </div>
+
+        <div style="display: inline;width: 200px;text-align: left;margin-right: 10px">
+            <div style="float: left;">显示方式：</div>
+            <div style="float: left;">
+                <select name="showmode" style="font-size:16px;width:100%;margin-top: 8px">
+
+                </select>
+            </div>
+        </div>
+
+        <div style="display: inline;width: 200px;text-align: left;margin-right: 10px">
+            <div style="float: left;">字体大小：</div>
+            <div style="float: left;">
+                <select  id="fontSize" name="fontSize" style="font-size:16px;width:50px;margin-top: 8px" onchange="setFontSize()">
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16" selected="selected">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div style="float: right;">
+        <div style="float: left;text-align: center;display: inline;width: 120px;height: 40px;line-height: 40px;background: #FFFFFF;color: #00ABA5;cursor:hand;font-size: 18px;text-decoration: none;margin-right: 10px" class="radius" onClick="btnE_onclick()">
+            提交
+        </div>
+        <div style="float: left;text-align: center;display: inline;width: 120px;height: 40px;line-height: 40px;background: #FFFFFF;cursor:hand;color: #00ABA5;font-size: 18px;" class="radius" onClick="btnB_onclick()">
+            返回
+        </div>
+    </div>
+</div>
+<div id="mainbody" class="main">
+    <div id="mainTD" style="width: 100%;text-align: center;position: absolute;top: 26px;">
+        <div id="title" style="width: 100%;height: 40px;line-height: 40px;" class="styletitle">
+            基础知识
+        </div>
+        <div id="divQstPrm" style="width: 80%;height: 100%;margin-right: 80px">
+            <div id=CZT1 name=CZT1 onclick='divclick2(1)' style='word-break: break-all;'>
+                <p class='prm'>
+                    <font color='#0000FF'>我国第一艘航母辽宁舰服役，紧接着我国第一艘自行设计建造的航母也即将交付海军。这些海上巨无霸对我国国防有什么作用呢，作为军事爱好的你又了解多少呢？请打开WORD\W01.doc文档，按如下要求操作：<br>
+                （1）添加页眉：军事爱好。<br>
+                （2）将正文2栏合为1栏；并设置为两端对齐，首行缩进2字符，单倍行距。<br>
+                （3）将文中图片设置为高8厘米、宽15厘米（取消锁定纵横比），边框为3磅绿色双实线（标准色），亮度为64%。
+                    </font>
+                </p>
+                <p>&nbsp;&nbsp;&nbsp;</p>
+                <p align=center>
+                    <input type='image' src='images/dakai.jpg' onclick="QStart('1//22//WORD;W01.DOC//0201_001')" value='打开本题'>
+                </p>
+            </div>
+            <hr size='1' color='#c9c9c9'>
+        </div>
+    </div>
+</div>
+<div style="background-color: #F7F8FC;height: 40px;line-height: 40px;width: 100%;position: absolute;bottom: 80px;padding: 0;margin: 0;">
+    <div style="position: absolute;width: 100%;height: 100%;text-align: left;margin-left: 10%">
+        <span class="style14" id="QstCurrent">第1道题&nbsp;&nbsp;</span>
+        <span class="style14" id="QstSum">共103道题</span></td>
+    </div>
+    <div style="position: absolute;right: 0;width: 100%;height: 100%;text-align: right;margin-right: 10%;padding-top: 7px">
+        <select style=" font-size:14pt; width:140px;" name="qstlist" id="qstlist"></select>
+    </div>
+
+</div>
+<div style="background-color: #F7F8FC;height: 40px;line-height: 40px;width: 100%;position: absolute;bottom: 40px;padding: 0;margin: 0;text-align: right;">
+    <div style="position: absolute;right: 0;width: 100%;height: 100%;text-align: right;margin-right: 10%">
+        <img src="images/qt.gif" width="94" height="31" style="cursor:hand;" onclick="btnPrevious_onclick()">
+        <img src="images/ht.gif" width="94" height="31" style="cursor:hand;" onclick="btnNext_onclick()">
+        <img src="images/bzda.gif" width="104" height="31" style="cursor:hand;" onclick="btuShowAnswer_onclick()">
+        <img src='images/stjc.jpg' width='104' height='31' style="cursor:hand;" onclick="opinionclick()">
+        <img src="images/kjss.jpg" width="104" height="31" style="cursor:hand;" onclick="caiSearch()">
+        <img id="btnTryJudge" src="images/pfss.jpg" width="94" height="31" style="cursor:hand;" onclick="btnTryJudge_onclick()">
+<!--        <img src="images/ks_03.jpg" width="94" height="31" style="cursor:hand;" onclick="btnE_onclick()">-->
+<!--        <img src="images/ks_05.jpg" width="94" height="31" style="cursor:hand;" onclick="btnB_onclick()">-->
+    </div>
+</div>
+<div class="footer">
+    <div style="position: absolute;width: 100%;height: 100%;text-align: center">
+        <p style="color: #A6A5A5">果考网石家庄网络技术有限公司 &nbsp&nbsp&nbsp&nbsp V2023.2</p>
+    </div>
+    <div style="position: absolute;right: 0;width: 100%;height: 100%;text-align: right;padding-right: 30px">
+        <p style="color: #A6A5A5">客服：0311-69031518</p>
+    </div>
+</div>
+<input type="hidden" id="txtCommand" value="QSTDISP">
+<input type="button" style=" display:none;" id="btnCallVB">
+<input type="hidden" id="QIndex" name="QIndex">
+<input type="hidden" id="CurrQstNo">
+<input type="hidden" id="CurrResult">
+<input type="hidden" id="CurrCztNo">
+<input type="hidden" id="CurrQstType">
+<input type="hidden" id="CurrFile">
+<input type="button" id="submitAsw" style="display:none;"
+       value="&#20445;&#23384;&#22522;&#30784;&#30693;&#35782;&#39064;&#31572;&#39064;&#32467;&#26524;">
+<input type="hidden" id="CztNum" name="CztNum" value="0">
+<input type="hidden" id="comSize" value="16">
+</body>
+<script>
+    function setsize() {
+        try {
+            var divMain=document.getElementById("mainbody");
+            var divMainHeight=document.body.clientHeight-66-60-40-60;
+            divMain.style.height=divMainHeight+"px";
+
+            var divMain2=document.getElementById("mainTD");
+            var divMainHeight2=document.body.clientHeight-66-60-40-60;
+            var divMainWidth2=document.body.clientWidth-60;
+            divMain2.style.height=divMainHeight2+"px";
+            divMain2.style.width=divMainWidth2+"px";
+        }catch (e){
+
+        }
+    }
+
+    window.onresize =function () {
+        setsize();
+    }
+
+    setsize();
+</script>
+<script>
+    function getClass(obj, sClass) {
+        var aResult = [];
+        if ('getElementsByClassName' in document) {
+            aResult = obj.getElementsByClassName(sClass);
+        } else {
+            var aEle = obj.getElementsByTagName('*');
+            for (var i = 0; i < aEle.length; i++) {
+                var str = aEle[i].className;
+                if (str.indexOf(sClass) != -1) {
+                    aResult.push(aEle[i]);
+                }
+            }
+        }
+        return aResult;
+    }
+
+    function setFontSize() {
+        var aa = document.getElementById("mainTD");
+        var bb = getClass(aa, "prm");
+        var cc = getClass(aa, "ans");
+        var num = parseInt(document.getElementById("fontSize").value);
+        for (i = 0; i < bb.length; i++) {
+            var bb1 = bb[i];
+            if (bb1.tagName.toLowerCase() == "td" || bb1.tagName.toLowerCase() == "p") {
+                bb1.style.fontSize = num + 'px';
+                bb1.style.lineHeight = '200%';
+            }
+        }
+        for (i = 0; i < cc.length; i++) {
+            var cc1 = cc[i];
+            if (cc1.tagName.toLowerCase() == "td" || bb1.tagName.toLowerCase() == "p") {
+                cc1.style.fontSize = num + 'px';
+                cc1.style.lineHeight = '200%';
+            }
+        }
+        document.getElementById("comSize").value = num;
+    }
+</script>
+<script language="vbscript">
+  sub btnB_onclick()
+    txtCommand.value="btnB//"
+    btnCallVB.click
+ end sub
+ sub END_onclick()
+    txtCommand.value="backMyTest"
+    btnCallVB.click
+ end sub
+ sub btnSubmit_onclick()
+    txtCommand.value="examSelect//" + lstExmlist.value
+    btnCallVB.click
+ end sub
+ sub opinionclick()
+     txtCommand.value="SubmitOpinion//"
+     btnCallVB.click
+ end sub
+ sub btnPrevious_onclick()
+    txtCommand.value="Previous//"
+    btnCallVB.click
+ end sub
+ sub btnNext_onclick()
+    txtCommand.value="btnNext//"
+    btnCallVB.click
+ end sub
+sub btuShowAnswer_onclick()
+    txtCommand.value="ShowAnswer//"
+    btnCallVB.click
+ end sub
+sub btuSubmitOpinion_onclick()
+   txtCommand.value="SubmitOpinion1//"
+    btnCallVB.click
+end sub
+ sub btnE_onclick()
+    txtCommand.value="btnE//"
+    btnCallVB.click
+ end sub
+ sub btnTryJudge_onclick()
+    txtCommand.value="btnTryJudge//"
+    btnCallVB.click
+ end sub
+ 
+ sub qstlist_onchange()
+    txtCommand.value="QstList//" + qstlist.value
+    btnCallVB.click
+ end sub
+ sub qsttype_onchange()
+    txtCommand.value="SHOWPRACTICE//TYPE" + qsttype.value
+    btnCallVB.click
+ end sub
+ sub showmode_onchange()
+    txtCommand.value="SHOWPRACTICE//SHOWMODE" + showmode.value
+    btnCallVB.click
+ end sub
+ sub caiSearch()
+    txtCommand.value="SeachCai//" + document.all("CurrQstNo").value
+    btnCallVB.click
+ end sub
+ sub btnCallVB_onclick()
+
+ end sub
+sub UserOpinion()
+   txtCommand.value="USEROPINION//"
+    btnCallVB.click
+end sub
+Function DivClick1(pQstType) '&#21333;&#20987;&#22522;&#30784;&#30693;&#35782;&#39064;
+  'On Error Resume Next  '2002/09/02
+  lcStr= Trim(window.event.srcelement.name)  '&#21462;&#34920;&#21333;&#39033;&#21517;&#31216;
+  If pQstType=6 or pQstType=8 Then '填空题
+     lnLen = Len(lcStr)
+     Do While Right(Left(lcStr, lnLen), 1)<>"_"  '找变量名最后一个“_”
+        lnLen = lnLen - 1
+     Loop
+     lcStr = Left(lcStr, lnLen-1)
+  End If
+
+  lcQstNo = Right(lcStr, Len(lcStr)-1)
+
+ lcQIndex  = QIndex.Value  '取当前试题的ITEMNUM
+ 'msgbox lcqindex
+  lnItemNum = 0
+  Do While lcQIndex<>""
+     lnLen   = Len(lcQIndex)
+     lnPos1  = InStr(1, lcQIndex, ",")
+     lnPos2  = InStr(lnPos1+1, lcQIndex, ",")
+     lnPos3  = InStr(lnPos2+1, lcQIndex, ",")
+     If lcQstNo = Left(lcQIndex, lnPos1-1) Then
+        lnQstType = Right(Left(lcQIndex, lnPos2-1), lnPos2-lnPos1-1)
+        lnQstType = CInt(lnQstType)
+        lnItemNum = Right(Left(lcQIndex, lnPos3-1), lnPos3-lnPos2-1)
+        lnItemNum = CInt(lnItemNum)
+        lcQIndex  = ""
+     Else
+        lcQIndex  = Right(lcQIndex, lnLen - lnPos3)
+     End If
+  Loop
+
+  lcResult = ""   '&#31572;&#39064;&#32467;&#26524;
+  If pQstType=1 Then '&#21333;&#36873;
+     For lnI=1 To lnItemNum
+         'Msgbox lcStr & lnI
+         If Document.All(lcStr & lnI).Checked Then
+            lcResult = Document.All(lcStr & lnI).Value
+            Exit For
+         End If
+     Next
+  ElseIf pQstType=3 Then '&#22810;&#36873;
+     For lnI=1 To lnItemNum
+         If Document.All(lcStr & lnI).Checked Then
+            lcResult = lcResult & Document.All(lcStr & lnI).Value
+         End If
+     Next
+  ElseIf pQstType=5 Then '&#21028;&#26029;
+     For lnI=1 To 2
+         If Document.All(lcStr & lnI).Checked Then
+            lcResult = Document.All(lcStr & lnI).Value
+            Exit For
+         End If
+     Next
+  ElseIf pQstType=6 Then '填空
+     For lnI=1 To lnItemNum
+         lcResult =  lcResult & Document.All(lcStr & "_" & lnI).Value
+         If lnI<lnItemNum Then
+            lcResult = lcResult & "//"
+         End If
+     Next
+    '增加问答题
+  ElseIf pQstType=7 Then '问答
+         lcResult = lcResult & Document.All(lcStr).Value
+  ElseIf pQstType=8 Then '填空
+     For lnI=1 To lnItemNum
+          lcResult =  lcResult &Document.All(lcStr & "_" & lnI).Item(Document.All(lcStr & "_" & lnI).SelectedIndex).value
+         If lnI<lnItemNum Then
+            lcResult = lcResult & "//"
+         End If
+     Next
+  End If
+
+  If lcResult<>"" Then
+     Document.all("DIV" & Right(lcStr, Len(lcStr)-1)).style.backgroundColor = "#E2F2FE"
+     CurrResult.Value = lcResult
+     CurrQstNo.Value = lcQstNo
+     submitAsw.Click
+  End If
+End Function
+
+Function DivClick2(pCztNo)  '&#21333;&#20987;&#25805;&#20316;&#39064;
+ Dim lnI
+ For lnI=1 To CztNum.value
+     Document.all("CZT" & lnI).style.backgroundColor = ""
+ Next
+ Document.all("CZT" & pCztNo).style.backgroundColor = "#E2F2FE"
+End  Function
+
+Function QStart(pStr)
+ dim strInfo
+
+ lcStr   = pStr
+ lcCztNo = Left(lcStr, InStr(lcStr, "//")-1)
+ lcStr   = Right(lcStr, Len(lcStr) - InStr(lcStr, "//") - 1)
+ lnType  = Left(lcStr, InStr(lcStr, "//")-1)
+ lcFile  = Right(lcStr, Len(lcStr) - InStr(lcStr, "//") - 1)
+
+ For lnI=1 To CztNum.value
+     Document.all("CZT" & lnI).style.backgroundColor = ""
+ Next
+ Document.all("CZT" & lcCztNo).style.backgroundColor = "#E2F2FE"
+
+ '&#20889;&#20837;&#21442;&#25968;
+ CurrCztNo.Value = lcCztNo
+ CurrQstType.Value = lnType
+ CurrFile.Value = lcFile
+ strInfo="QSTART//" & CurrQstType.Value & "//" & CurrFile.Value
+ txtCommand.value=strInfo
+ btnCallVB.Click
+End Function
+
+sub submitAsw_onclick()
+ dim strInfo
+ strInfo="SAVECLICK1//" & CurrQstNo.Value & "//" & CurrResult.Value
+ txtCommand.value=strInfo
+ btnCallVB.click
+end sub
+Function CheckCopyHtml()
+    Dim strReadText
+    On Error Resume Next '20220928防止缩放页面时出现错误
+    strReadText = window.document.selection.createrange.text
+    If Len(strReadText)>1 Then
+       clipboardData.clearData
+       clipboardData.setData "Text", "Text","Text", "Text" ,"Text"
+       window.event.returnValue = False
+       CheckCopyHtml = False
+    Else
+       Window.Event.ReturnValue = True
+       CheckCopyHtml = True
+    End If
+End Function
+sub WindowPost(pnPostValue)
+ txtCommand.value="WindowPost//" + pnPostValue
+ btnCallVB.click
+end sub
+</script>
+<script language="javascript">
+
+    function KeyDown() {
+        // alert(window.event.keyCode);
+        if ((window.event.altKey) &&
+            ((window.event.keyCode == 37) || //屏蔽 Alt+ 方向键 ←
+                (window.event.keyCode == 39))) { //屏蔽 Alt+ 方向键 →
+            // alert("不准你使用ALT+方向键前进或后退网页！");
+            event.returnValue = false;
+        }
+        if ((event.keyCode == 8) || //屏蔽退格删除键
+            (event.keyCode == 116) || //屏蔽 F5 刷新键
+            (event.ctrlKey && event.keyCode == 82)) { //Ctrl + R
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if ((event.ctrlKey) && (event.keyCode == 78)) //屏蔽 Ctrl+n
+            event.returnValue = false;
+        if ((event.shiftKey) && (event.keyCode == 121)) //屏蔽 shift+F10
+            event.returnValue = false;
+        if (window.event.srcElement.tagName == "A" && window.event.shiftKey)
+            window.event.returnValue = false; //屏蔽 shift 加鼠标左键新开一网页
+        if ((window.event.altKey) && (window.event.keyCode == 115)) { //屏蔽Alt+F4
+            window.showModelessDialog("about:blank", "", "dialogWidth:1px;dialogheight:1px");
+            return false;
+        }
+    }
+    document.oncontextmenu = mylock1;
+    function mylock1() {
+        event.returnValue = false;
+    }
+    document.onkeydown = KeyDown
+    function KeyDown(e) {
+        var dd = CheckCopyHtml();
+        if ((window.event.altKey) &&
+            ((window.event.keyCode == 37) ||     //屏蔽 Alt+ 方向键 ←
+                (window.event.keyCode == 39))) {    //屏蔽 Alt+ 方向键 →
+            alert("不准你使用ALT+方向键前进或后退网页！");
+            event.returnValue = false;
+        }
+        if ((event.keyCode == 116) ||                   //屏蔽 F5 刷新键
+            (event.keyCode == 112) ||                   //屏蔽 F1
+            (event.ctrlKey && event.keyCode == 82)) { //Ctrl + R
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if ((event.ctrlKey) && (event.keyCode == 78))     //屏蔽 Ctrl+n
+            event.returnValue = false;
+        if ((event.shiftKey) && (event.keyCode == 121)) //屏蔽 shift+F10
+            event.returnValue = false;
+        if (event.keyCode == 121) //屏蔽 F10
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 122) //屏蔽 F11
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 116) //屏蔽 F5
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 112) //屏蔽 F1
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (event.keyCode == 114) //屏蔽 F3
+        {
+            event.keyCode = 0;
+            event.returnValue = false;
+        }
+        if (window.event.srcElement.tagName == "A" && window.event.shiftKey)
+            window.event.returnValue = false;    //屏蔽 shift 加鼠标左键新开一网页
+        if ((window.event.altKey) && (window.event.keyCode == 115)) { //屏蔽Alt+F4
+            window.showModelessDialog("about:blank", "", "dialogWidth:1px;dialogheight:1px");
+            return false;
+        }
+        if (event.keyCode == 8) //屏蔽删除键返回上一页
+        {
+            var ev = e || window.event;//获取event对象
+            var obj = ev.target || ev.srcElement;//获取事件源
+            var t = obj.type || obj.getAttribute('type');//获取事件源类型
+            //获取作为判断条件的事件类型
+            var vReadOnly = obj.getAttribute('readonly');
+            var vEnabled = obj.getAttribute('enabled');
+            //处理null值情况
+            vReadOnly = (vReadOnly == null) ? false : vReadOnly;
+            vEnabled = (vEnabled == null) ? true : vEnabled;
+            //当敲Backspace键时，事件源类型为密码或单行、多行文本的，
+            //并且readonly属性为true或enabled属性为false的，则退格键失效
+            var flag1 = (ev.keyCode == 8 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vEnabled != true)) ? true : false;
+            //当敲Backspace键时，事件源类型非密码或单行、多行文本的，则退格键失效
+            var flag2 = (ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea") ? true : false;
+            //判断
+            if (flag2) {
+                return false;
+            }
+            if (flag1) {
+                return false;
+            }
+        }
+        if (event.keyCode == 13) //屏蔽回车键打开文件夹
+        {
+            var ev = e || window.event;//获取event对象
+            var obj = ev.target || ev.srcElement;//获取事件源
+            var t = obj.type || obj.getAttribute('type');//获取事件源类型
+            //获取作为判断条件的事件类型
+            var vReadOnly = obj.getAttribute('readonly');
+            var vEnabled = obj.getAttribute('enabled');
+            //处理null值情况
+            vReadOnly = (vReadOnly == null) ? false : vReadOnly;
+            vEnabled = (vEnabled == null) ? true : vEnabled;
+            //当敲Backspace键时，事件源类型为密码或单行、多行文本的，
+            //并且readonly属性为true或enabled属性为false的，则回车键失效
+            var flag1 = (ev.keyCode == 13 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vEnabled != true)) ? true : false;
+            //当敲回车键时，事件源类型非密码或单行、多行文本的，则退格键失效
+            var flag2 = (ev.keyCode == 13 && t != "password" && t != "text" && t != "textarea") ? true : false;
+            //判断
+            if (flag2) {
+                return false;
+            }
+            if (flag1) {
+                return false;
+            }
+        }
+    }
+</script>
+</html>

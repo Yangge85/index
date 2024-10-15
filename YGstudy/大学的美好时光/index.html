@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>大学的美好时光</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #444;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        ul li a {
+            color: #000;
+        }
+
+        ul li a:hover {
+            color: #d2568c;
+        }
+
+        section {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            flex-grow: 1;
+        }
+
+        footer {
+            position: fixed;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            bottom: 0;
+            width: 100%;
+        }
+
+        p {
+            margin-bottom: 10px;
+
+        }
+
+        img {
+            width: 100%;
+            /* 让图片宽度占满父容器 */
+        }
+
+        @media (max-width: 600px) {
+            img {
+                width: 100%;
+                /* 在小屏幕上，将图片宽度减小为80% */
+            }
+        }
+
+        #image-container div p:last-child {
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 style="font-size: 30px;">大学的美好时光</h1>
+        <h1></h1>
+        <p>前端编辑：@阳 摄影摄像：@迪@饼</p>
+
+        <div id="countdown"></div>
+    </header>
+
+
+    <section>
+
+        <h3>序言</h3>
+        <p>欢迎来到河北建筑工程学院2003级城建系供热通风与空调工程专业，时光一去不复回，转眼已是黄土埋半截了。追忆往昔，怀念大学时的种种经历，不免让人感慨万千。这里有一些老照片,记录着那个年代的我们！</p>
+        <div id="image-container"></div>
+
+    </section>
+
+    <footer>
+        &copy; 2003-2023 <br>
+        欢迎投稿将高清照片视频发到 <br>
+        29521510@qq.com 或 ~相识二十载~ 微信群 <br>
+
+    </footer>
+
+    <script>
+
+        // 创建一个函数以添加图片、标题和简介
+        function addImage(title, imageUrl, description) {
+            var imageContainer = document.getElementById('image-container');
+
+            var imageDiv = document.createElement('div');
+            var imageTitle = document.createElement('h3');
+            var image = document.createElement('img');
+            var imageDescription = document.createElement('p');
+
+            imageTitle.innerText = title;
+            image.setAttribute('src', imageUrl);
+            image.setAttribute('alt', '图片描述');
+            imageDescription.innerText = description;
+
+            imageDiv.appendChild(imageTitle);
+            imageDiv.appendChild(image);
+            imageDiv.appendChild(imageDescription);
+
+            imageContainer.appendChild(imageDiv);
+        }
+        // 创建一个函数以添加视频、标题和简介
+        function addVideo(title, videoUrl, description) {
+            var videoContainer = document.getElementById('image-container');
+
+            var videoDiv = document.createElement('div');
+            var videoTitle = document.createElement('h3');
+            var video = document.createElement('video');
+            var videoDescription = document.createElement('p');
+
+            // 设置视频属性
+            video.setAttribute('controls', true); // 添加视频控件
+            video.setAttribute('width', '100%');  // 设置视频宽度
+
+            videoTitle.innerText = title;
+            video.setAttribute('src', videoUrl);
+            video.setAttribute('alt', '视频描述');
+            videoDescription.innerText = description;
+
+            videoDiv.appendChild(videoTitle);
+            videoDiv.appendChild(video);
+            videoDiv.appendChild(videoDescription);
+
+            videoContainer.appendChild(videoDiv);
+        }
+
+        // 目标日期，即2003年9月1日
+        var startDate = new Date("2003-09-01T00:00:00");
+        // 当前日期
+        var currentDate = new Date();
+
+        // 计算相差的时间（以毫秒为单位）
+        var timeDifference = currentDate - startDate;
+
+        // 将毫秒转换为天数
+        var daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+        // 显示相差的天数
+        document.getElementById("countdown").innerHTML = "今天是我们认识的第 " + daysDifference + " 天";
+
+        // 调用函数以添加图片和相关信息
+        addImage("班级留念", "./img/班级留念.jpg", "毕业留念");
+
+        addImage("一号宿舍全体合影", "./img/宿舍群象2.jpg", `忆往昔峥嵘岁月稠。
+                恰同学少年，风华正茂；书生意气，挥斥方遒。
+                指点江山，激扬文字，粪土当年万户侯。`);
+        addImage("小太君欺负可怜的老大", "./img/太君老大.jpg", "老大蹲在地上用膳，太君前来骚扰。");
+        addImage("树下禁止撒尿", "./img/阿迪禁止撒尿.jpg", "阿迪手持极品武器，在树上张贴皇榜：谁在此尿尿剁他鸡鸡，时间是2004年平安夜。");
+        addImage("沧海一声笑", "./img/摇滚青年.jpg", `啊迪 大饼 倾情演绎：
+
+                    沧海一声笑，滔滔两岸潮，
+                    浮沉随浪，只记今朝。
+                    苍天笑，纷纷世上潮，
+                    谁负谁胜出，天知晓。
+                    江山笑，烟雨遥，
+                    涛浪淘尽红尘俗世几多娇。
+                    清风笑，竟惹寂寥，
+                    豪情还賸了一襟晚照。
+                    苍生笑，不再寂寥，
+                    豪情仍在痴痴笑笑。`);
+        addImage("太君老牛", "./img/太君老牛.jpg", "太君跟老牛合作研发新一代战机模型");
+        addImage("勤快的强", "./img/勤快的强.jpg", "勤快的强在缝缝补补的同时不忘了吃猪蹄！");
+        addImage("打升级", "./img/打升级.jpg", "戴维在想调主出啥呢？");
+        addImage("刻苦学习", "./img/刻苦学习.jpg", "老大赤脚刻苦学习小说写作技巧");
+        addImage("刻苦学习", "./img/刻苦学习2.jpg", "戴维读读报纸紧跟形势");
+        addImage("刻苦的迪", "./img/刻苦的迪.jpg", "刻苦的迪在学习");
+        addImage("老牛在网吧", "./img/老牛在网吧.jpg", "网吧名字叫啥来着~~~");
+        addImage("刻苦钻研", "./img/刻苦钻研.jpg", "车床小能手");
+        addImage("怀孕的迪", "./img/怀孕的迪.jpg", "怀了一个篮球");
+        addImage("太君潇洒归来", "./img/太君潇洒归来.jpg", "太君出去潇洒了一圈，强拎了午餐归来");
+        addImage("被蚊子叮的强", "./img/被蚊子叮的强.jpg", "睡着的强~");
+        addImage("非礼啊", "./img/非礼啊.jpg", "扒裤衩~");
+        addImage("小鲜肉", "./img/小鲜肉.jpg", "小鲜肉~");
+        addImage("简陋淋浴", "./img/简陋淋浴.jpg", "简陋淋浴~");
+        addImage("三杰游大同", "./img/三杰大同游.jpg", "三杰游大同~");
+        addImage("伟迪零八相会", "./img/阿迪戴维.jpg", `伟  迪 二人于2008年妇女节前视察北京鸟巢。`);
+        addImage("发福的龙礼", "./img/发福的龙.jpg", "发福龙发福礼");
+        addImage("酒蒙子聚会", "./img/酒蒙子聚会.jpg", "酒蒙子聚会");
+        addImage("蜘蛛侠", "./img/蜘蛛侠.jpg", "蜘蛛侠");
+        addImage("国庆节", "./img/国庆节.jpg", "国庆节");
+        addImage("国庆节", "./img/国庆节2.jpg", "国庆节");
+        addImage("大境门", "./img/柳伏.jpg", "大境门");
+        addImage("大同游", "./img/大同1.jpg", "大同游");
+        addImage("大同游", "./img/大同2.jpg", "大同游");
+        addImage("大同游", "./img/大同3.jpg", "大同游");
+        addImage("大同游", "./img/大同4.jpg", "大同游");
+        addImage("大同游", "./img/大同5.jpg", "大同游");
+        addImage("刚睡醒得我", "./img/刚睡醒得我.jpg", " 刚睡醒得我");
+        addImage("我跟太君", "./img/我跟太君.jpg", " 我跟太君");
+        addImage("七人合影", "./img/七人合影.jpg", " 七人合影");
+        addImage("我跟柳伏", "./img/我跟柳伏.jpg", " 我跟柳伏");
+
+
+        // 可以继续调用 addImage 函数来添加更多图片和信息
+
+
+        // 调用函数以添加视频和相关信息
+        addVideo("孟强大师兄翻跟头", "./img/孟强翻跟头.mov", "这是阳早期驯服强的视频。");
+        addVideo("狗剩二师弟翻跟头", "./img/驯服狗剩.mov", "这是阳早期驯服狗剩的视频。");
+        addVideo("麻雀三师妹翻跟头", "./img/抓的宝宝满级了.mov", "这是阳早期驯服麻雀的视频。");
+        addVideo("孟强跟老大泼水大战", "./img/泼水大战.mov", "这是孟强泼水大战还是老大呢看不太清 ");
+        addVideo("决战课桌之巅", "./img/决战课桌之巅.mov", "这是强跟阳的轻功比拼");
+        addVideo("旧梦重温", "./img/1.mov", "聚会");
+        // addVideo("旧梦重温", "./img/2.mov", "聚会");
+        // addVideo("旧梦重温", "./img/3.mov", "聚会");
+        addVideo("旧梦重温", "./img/4.mov", "聚会");
+        addVideo("旧梦重温", "./img/5.mov", "聚会");
+        addVideo("旧梦重温", "./img/6.mov", "聚会");
+        addVideo("旧梦重温", "./img/7.mov", "聚会");
+        addVideo("旧梦重温", "./img/8.mov", "聚会");
+    </script>
+</body>
+
+</html>

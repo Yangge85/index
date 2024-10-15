@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 微软雅黑, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: aliceblue;
+
+        }
+
+        .countdown-container {
+            background-color: #5c5c5c;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 250px;
+            height: 100px;
+            /* 设置统一的外边距 */
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+        }
+
+        h2 {
+            margin: 20px auto;
+
+        }
+
+        p {
+            font-size: 20px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="countdown-container">
+        <h2>悠悠生日</h2>
+        <p id="timer1"></p>
+    </div>
+
+    <div class="countdown-container">
+        <h2>跨年</h2>
+        <p id="timer2"></p>
+    </div>
+
+    <div class="countdown-container">
+        <h2>农历新年春晚</h2>
+        <p id="timer3"></p>
+    </div>
+
+    <div class="countdown-container">
+        <h2>牛牛生日</h2>
+        <p id="timer4"></p>
+    </div>
+
+    <div class="countdown-container">
+        <h2>儿子中考</h2>
+        <p id="timer5"></p>
+    </div>
+
+    <script>
+        // 设置倒计时的目标日期和时间（以毫秒为单位）
+        const targetDates = [
+            new Date('2023-11-02T00:00:00').getTime(),
+            new Date('2024-01-01T00:00:00').getTime(),
+            new Date('2024-02-09T20:00:00').getTime(),
+            new Date('2024-06-26T00:00:00').getTime(),
+            new Date('2025-06-21T00:00:00').getTime()
+        ];
+
+        // 更新倒计时的函数
+        function updateCountdown() {
+            const now = new Date().getTime();
+
+            for (let i = 0; i < targetDates.length; i++) {
+                const timeLeft = targetDates[i] - now;
+
+                if (timeLeft <= 0) {
+                    document.getElementById(`timer${i + 1}`).innerHTML = `业已达成`;
+                } else {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    document.getElementById(`timer${i + 1}`).innerHTML = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+                }
+            }
+        }
+
+        // 初始更新
+        updateCountdown();
+
+        // 每秒更新一次
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+
+</html>

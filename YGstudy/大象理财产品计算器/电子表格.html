@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>从Excel复制数据的表格</title>
+    <style>
+        #myTable {
+            border-collapse: collapse;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        th,
+        td {
+            text-align: center;
+            /* 将表头和单元格内文本居中 */
+            padding: 8px;
+            border: 1px solid #000;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            /* 将输入框内文本居中 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="myTable" border="1">
+        <tr>
+            <th>产品名称</th>
+            <th>天数</th>
+            <th>收益率</th>
+        </tr>
+        <tr>
+            <td><input type="text" id="cell_0_0"></td>
+            <td><input type="text" id="cell_0_1"></td>
+            <td><input type="text" id="cell_0_2"></td>
+        </tr>
+        <tr>
+            <td><input type="text" id="cell_1_0"></td>
+            <td><input type="text" id="cell_1_1"></td>
+            <td><input type="text" id="cell_1_2"></td>
+        </tr>
+        <tr>
+            <td><input type="text" id="cell_2_0"></td>
+            <td><input type="text" id="cell_2_1"></td>
+            <td><input type="text" id="cell_2_2"></td>
+        </tr>
+        <tr>
+            <td><input type="text" id="cell_3_0"></td>
+            <td><input type="text" id="cell_3_1"></td>
+            <td><input type="text" id="cell_3_2"></td>
+        </tr>
+    </table>
+
+    <script>
+        // 获取表格
+        const table = document.getElementById('myTable');
+
+        // 添加粘贴事件监听器
+        table.addEventListener('paste', (event) => {
+            event.preventDefault();
+            const clipboardData = event.clipboardData || window.clipboardData;
+            const pastedData = clipboardData.getData('text');
+
+            // 将粘贴的数据拆分为行和列
+            const rows = pastedData.split('\n');
+
+            // 用于迭代每个单元格的计数器
+            let cellCounter = 0;
+
+            // 填充表格中的每个单元格
+            rows.forEach((rowData, rowIndex) => {
+                const columns = rowData.split('\t'); // 假设数据使用制表符分隔
+
+                columns.forEach((cellData, columnIndex) => {
+                    const cellId = `cell_${rowIndex}_${columnIndex}`;
+                    const cell = document.getElementById(cellId);
+
+                    if (cell) {
+                        cell.value = cellData;
+                        cellCounter++;
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: '微软雅黑';
+        }
+
+        body {
+
+            background-color: #a0a0a0;
+        }
+
+        .hd {
+            border-radius: 5px;
+            position: relative;
+            width: 360px;
+            height: 100px;
+
+            margin-top: 50px;
+            background-color: #fff;
+
+            /* line-height: 100px; */
+            /* margin-bottom: 0;
+            padding-bottom: 0; */
+
+        }
+
+        #tital {
+            position: absolute;
+            top: 45%;
+            width: 100%;
+            height: 30px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        #time {
+            color: #fff;
+            background-color: rgb(185, 16, 75);
+
+            right: 0;
+            padding-right: 3px;
+            padding-left: 3px;
+            position: absolute;
+            font-size: 14px;
+            border-radius: 0 5px 0 0;
+        }
+
+        #copy {
+            position: absolute;
+            font-size: 14px;
+            color: #fff;
+            background-color: rgb(185, 16, 75);
+            border-radius: 5px 0 0 0;
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+
+        .box {
+            list-style: none;
+            margin-top: 2px;
+            margin-bottom: 3px;
+            border-radius: 5px;
+
+        }
+
+        /* 显示还是隐藏 */
+        /* #box2,
+        #box3,
+        #box4 {
+            display: none; */
+
+        /* } */
+
+        .up {
+            display: flex;
+            justify-content: space-between;
+            /* text-align: center; */
+            align-items: center;
+            width: 360px;
+            height: 40px;
+            font-size: 16px;
+            line-height: 40px;
+            background-color: #e3e3e3;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .goods {
+            display: inline-block;
+            font-size: 12px;
+            width: 112px;
+            height: 40px;
+            margin-right: 0;
+            padding-right: 0;
+        }
+
+        .dian {
+            /* display: inline-block; */
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            line-height: 18px;
+            margin: 1px;
+            text-align: center;
+
+            color: #ffffff;
+            background-color: #eb1809;
+
+
+        }
+
+        .jian {
+            /* display: inline-block; */
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            line-height: 18px;
+            margin: 1px;
+            text-align: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: #24c168;
+
+
+        }
+
+        .date {
+            display: inline-block;
+
+            text-align: right;
+            width: 120px;
+            height: 40px;
+        }
+
+
+
+        .down {
+            width: 360px;
+            height: 85px;
+            font-size: 12px;
+            border-radius: 0 0 5px 5px;
+            background-color: #ffffff;
+            /* text-align: center; */
+        }
+
+        .down1 {
+            width: 360px;
+            height: 35px;
+            display: inline-block;
+            /* font-size: 12px; */
+            color: #767676;
+            line-height: 35px;
+            display: flex;
+
+            /* justify-content: space-between; */
+        }
+
+        .down1 h4:nth-child(1) {
+            text-align: left;
+
+            margin-left: 10px;
+            padding-left: 10px;
+        }
+
+        .down1 h4:nth-child(2) {
+            text-align: right;
+            margin-right: 10px;
+            padding-right: 20px;
+        }
+
+        .down2 {
+            width: 360px;
+            height: 35px;
+            display: inline-block;
+            color: red;
+            font-size: 24px;
+            line-height: 35px;
+            display: flex;
+            /* justify-content: space-between; */
+            /* text-align: right; */
+        }
+
+        .down2 {
+            width: 360px;
+            height: 35px;
+            display: flex;
+            /* justify-content: space-between; */
+            /* 左对齐和右对齐之间的空间平均分配 */
+        }
+
+        .down2 h3:nth-child(1) {
+            text-align: left;
+            margin-left: 10px;
+            padding-left: 10px;
+            /* 左对齐 */
+        }
+
+        .down2 h3:nth-child(2) {
+            text-align: right;
+            margin-right: 10px;
+            padding-right: 10px;
+            /* 右对齐 */
+        }
+
+        label {
+            display: inline-block;
+            font-size: 15px;
+            margin-left: 3px;
+            margin-top: 20px;
+        }
+
+        label:nth-child(1) {
+            padding-top: 50px;
+        }
+
+        input {
+            font-size: 20px;
+        }
+
+        button {
+            display: inline-block;
+            width: 70px;
+            height: 50px;
+            margin: 10px 0 0 0;
+            padding: 0 0 0 0;
+        }
+
+        button:nth-child(5) {
+            display: none;
+        }
+
+        .wv {
+
+            display: inline-block;
+            width: 70px;
+            height: 50px;
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+        }
+
+        .foot {
+            height: 500px;
+        }
+
+        /* 表格样式，输入框内容居中Define a class for custom styling of the input fields */
+        /* Style for input fields */
+        #myTable input[type="text"] {
+            width: 80px;
+            /* Set the width as per your preference */
+            height: 24px;
+            /* Set the height as per your preference */
+            text-align: center;
+            /* Center-align the content */
+        }
+
+        /* 表格单元格的样式 */
+        #myTable td {
+            padding: 5px;
+
+            /* 根据需要调整内边距 */
+        }
+
+        /* 输入框的样式 */
+        #myTable input[type="text"] {
+            font-size: 12px;
+            width: 80px;
+            /* 根据需要调整宽度 */
+            height: 30px;
+            /* 根据需要调整高度 */
+            text-align: center;
+            /* 文本内容居中 */
+        }
+
+        /* 按钮的样式 */
+        #myTable button {
+            display: none;
+            width: 80px;
+            /* 让按钮宽度占满父元素的宽度 */
+            height: 20px;
+            /* 与输入框的高度保持一致 */
+            box-sizing: border-box;
+            /* 包含内边距和边框在内的总宽度和高度 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hd">
+        <div id="tital">
+            <H3>大象国际产品推荐</H3>
+        </div>
+        <div id="time"></div>
+        <div id="copy">HSDX&reg;</div>
+    </div>
+    <div>
+        <ul class="box" id="box1">
+            <li class="up">
+                <span class="goods">
+                    <h3>产品名称</h3>
+                </span>
+                <span class="dian">荐</span>
+                <span class="jian">垫</span>
+
+                <span class="date">
+                    <h5>操作天数</h5>
+                </span>
+            </li>
+            <li class="down">
+                <div class="down1">
+
+                    <h4>预期年化收益率</h4>
+
+
+                    <h4>一万元到期收益</h4>
+
+                </div>
+                <div class="down2">
+
+                    <h3>年化收益</h3>
+                    <h3> ￥元</h3>
+
+
+                </div>
+            </li>
+        </ul>
+        <ul class="box" id="box2">
+            <li class="up">
+                <span class="goods">
+                    <h3>产品名称</h3>
+                </span>
+                <span class="dian">荐</span>
+                <span class="jian">垫</span>
+
+                <span class="date">
+                    <h5>操作天数</h5>
+                </span>
+            </li>
+            <li class="down">
+                <div class="down1">
+
+                    <h4>预期年化收益率</h4>
+
+
+                    <h4>一万元到期收益</h4>
+
+                </div>
+                <div class="down2">
+
+                    <h3>年化收益</h3>
+                    <h3> ￥元</h3>
+
+
+                </div>
+            </li>
+        </ul>
+        <ul class="box" id="box3">
+            <li class="up">
+                <span class="goods">
+                    <h3>产品名称</h3>
+                </span>
+                <span class="dian">荐</span>
+                <span class="jian">垫</span>
+
+                <span class="date">
+                    <h5>操作天数</h5>
+                </span>
+            </li>
+            <li class="down">
+                <div class="down1">
+
+                    <h4>预期年化收益率</h4>
+
+
+                    <h4>一万元到期收益</h4>
+
+                </div>
+                <div class="down2">
+
+                    <h3>年化收益</h3>
+                    <h3> ￥元</h3>
+
+                </div>
+            </li>
+        </ul>
+        <ul class="box" id="box4">
+            <li class="up">
+                <span class="goods">
+                    <h3>产品名称</h3>
+                </span>
+                <span class="dian">荐</span>
+                <span class="jian">垫</span>
+
+                <span class="date">
+                    <h5>操作天数</h5>
+                </span>
+            </li>
+            <li class="down">
+                <div class="down1">
+
+                    <h4>预期年化收益率</h4>
+
+
+                    <h4>一万元到期收益</h4>
+
+                </div>
+                <div class="down2">
+
+                    <h3>年化收益</h3>
+                    <h3> ￥元</h3>
+
+
+                </div>
+            </li>
+        </ul>
+        <hr>
+
+        <div style="text-align: center;">
+            <label for="chanpin">请输入产品名称</label> <input class="chanpin" type="text"><br>
+            <label for="tianshu">请输入操作天数</label> <input class="tianshu" type="number"><br>
+            <label for="nianhua">请输入年化收益</label> <input class="nianhua" type="number"><br>
+
+
+        </div>
+        <div style="text-align: center;">
+            <button>写入产品1</button>
+            <button>写入产品2</button>
+            <button>写入产品3</button>
+            <button>写入产品4</button>
+            <button>清除</button>
+
+        </div>
+
+
+
+        <div style="text-align: center;margin: 0;padding: 0;">
+            <button class="guanbi1 wv">关闭1</button>
+            <button class="guanbi2 wv">关闭2</button>
+            <button class="guanbi3 wv">关闭3</button>
+            <button class="guanbi4 wv">关闭4</button>
+        </div>
+
+        <div style="text-align: center;margin: 0;padding: 0;">
+            <button class="xianshi1 wv">显示1</button>
+            <button class="xianshi2 wv">显示2</button>
+            <button class="xianshi3 wv">显示3</button>
+            <button class="xianshi4 wv">显示4</button>
+        </div>
+        <hr>
+        <table id="myTable">
+            <tr>
+                <td><input id="cell_0_0" type="text"></td>
+                <td><input id="cell_0_1" type="text"></td>
+                <td><input id="cell_0_2" type="text"></td>
+                <td><button onclick="handleButtonClick(1)">Button</button></td>
+            </tr>
+            <tr>
+                <td><input id="cell_1_0" type="text"></td>
+                <td><input id="cell_1_1" type="text"></td>
+                <td><input id="cell_1_2" type="text"></td>
+                <td><button onclick="handleButtonClick(2)">Button</button></td>
+
+            </tr>
+            <tr>
+                <td><input id="cell_2_0" type="text"></td>
+                <td><input id="cell_2_1" type="text"></td>
+                <td><input id="cell_2_2" type="text"></td>
+                <td><button onclick="handleButtonClick(3)">Button</button></td>
+
+            </tr>
+            <tr>
+                <td><input id="cell_3_0" type="text"></td>
+                <td><input id="cell_3_1" type="text"></td>
+                <td><input id="cell_3_2" type="text"></td>
+                <td><button onclick="handleButtonClick(4)">Button</button></td>
+
+            </tr>
+        </table>
+
+        <div style="text-align: center;">
+
+            <button onclick="clickAllButtons()">一键填入</button>
+        </div>
+
+        <div class="foot">
+
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        // Product 1
+        const xianshi1 = document.querySelector('.xianshi1');
+        const guanbi1 = document.querySelector('.guanbi1');
+        const box1 = document.querySelector('#box1');
+
+        xianshi1.addEventListener('click', function () {
+            box1.style.display = 'block'; // Show the box1 element
+        });
+
+        guanbi1.addEventListener('click', function () {
+            box1.style.display = 'none'; // Hide the box1 element
+        });
+
+        const chanpinInput1 = document.querySelector('.chanpin');
+        const tianshuInput1 = document.querySelector('.tianshu');
+        const nianhuaInput1 = document.querySelector('.nianhua');
+        const goodsH3_1 = document.querySelector('#box1 .goods h3');
+        const dateH5_1 = document.querySelector('#box1 .date h5');
+        const down2H3Rate_1 = document.querySelector('#box1 .down2 h3:nth-child(1)');
+        const down2H3Income_1 = document.querySelector('#box1 .down2 h3:nth-child(2)');
+        const writeProduct1Button = document.querySelector('button:nth-child(1)');
+
+        writeProduct1Button.addEventListener('click', function () {
+            const chanpinValue1 = chanpinInput1.value;
+            const tianshuValue1 = parseFloat(tianshuInput1.value);
+            const nianhuaValue1 = parseFloat(nianhuaInput1.value);
+            // 创建一个对象来保存产品1的数据
+            const product1Data = {
+                chanpin: chanpinValue1,
+                tianshu: tianshuValue1,
+                nianhua: nianhuaValue1
+            };
+
+            // 使用 JSON.stringify 将对象转换为 JSON 字符串并存储在 localStorage 中
+            localStorage.setItem('product1Data', JSON.stringify(product1Data));
+
+            // 更新界面元素
+            goodsH3_1.innerText = chanpinValue1;
+            dateH5_1.innerText = `操作周期:${tianshuValue1}天`;
+            down2H3Rate_1.innerText = `${nianhuaValue1.toFixed(2)}%`;
+
+            const income1 = ((10000 * tianshuValue1 / 365) * (nianhuaValue1 / 100)).toFixed(2);
+            down2H3Income_1.innerText = `${income1}元`;
+
+            // 清除输入字段
+            clearButton.click();
+        });
+
+        // 在页面加载时检查是否存在已保存的产品1数据
+        window.addEventListener('load', function () {
+            const savedProduct1Data = localStorage.getItem('product1Data');
+            if (savedProduct1Data) {
+                // 如果有保存的数据，将其解析为对象并更新界面元素
+                const product1Data = JSON.parse(savedProduct1Data);
+                goodsH3_1.innerText = product1Data.chanpin;
+                dateH5_1.innerText = `操作周期:${product1Data.tianshu}天`;
+                const nianhuaValue1 = parseFloat(product1Data.nianhua); // 解析已保存的年化收益率并转换为数字
+                down2H3Rate_1.innerText = `${nianhuaValue1.toFixed(2)}%`;
+
+                const income1 = ((10000 * product1Data.tianshu / 365) * (nianhuaValue1 / 100)).toFixed(2);
+                down2H3Income_1.innerText = `${income1}元`;
+            } else {
+                goodsH3_1.innerText = chanpinValue1;
+                dateH5_1.innerText = `操作周期:${tianshuValue1}天`;
+
+                // Display the 年化收益率 in the first <h3> element
+                down2H3Rate_1.innerText = `${nianhuaValue1.toFixed(2)}%`;
+
+                // Calculate the income and display it in the second <h3> element
+                const income1 = ((10000 * tianshuValue1 / 365) * (nianhuaValue1 / 100)).toFixed(2);
+                down2H3Income_1.innerText = `${income1}元`;
+                clearButton.click()
+            }
+        });
+
+
+        // Product 2
+        const xianshi2 = document.querySelector('.xianshi2');
+        const guanbi2 = document.querySelector('.guanbi2');
+        const box2 = document.querySelector('#box2');
+
+        xianshi2.addEventListener('click', function () {
+            box2.style.display = 'block'; // Show the box2 element
+        });
+
+        guanbi2.addEventListener('click', function () {
+            box2.style.display = 'none'; // Hide the box2 element
+        });
+
+        const chanpinInput2 = document.querySelector('.chanpin');
+        const tianshuInput2 = document.querySelector('.tianshu');
+        const nianhuaInput2 = document.querySelector('.nianhua');
+        const goodsH3_2 = document.querySelector('#box2 .goods h3');
+        const dateH5_2 = document.querySelector('#box2 .date h5');
+        const down2H3Rate_2 = document.querySelector('#box2 .down2 h3:nth-child(1)');
+        const down2H3Income_2 = document.querySelector('#box2 .down2 h3:nth-child(2)');
+        const writeProduct2Button = document.querySelector('button:nth-child(2)');
+
+        writeProduct2Button.addEventListener('click', function () {
+            const chanpinValue2 = chanpinInput2.value;
+            const tianshuValue2 = parseFloat(tianshuInput2.value);
+            const nianhuaValue2 = parseFloat(nianhuaInput2.value);
+
+            // 创建一个对象来保存产品2的数据
+            const product2Data = {
+                chanpin: chanpinValue2,
+                tianshu: tianshuValue2,
+                nianhua: nianhuaValue2
+            };
+
+            // 使用 JSON.stringify 将对象转换为 JSON 字符串并存储在 localStorage 中
+            localStorage.setItem('product2Data', JSON.stringify(product2Data));
+
+            // 更新界面元素
+            goodsH3_2.innerText = chanpinValue2;
+            dateH5_2.innerText = `操作周期:${tianshuValue2}天`;
+            down2H3Rate_2.innerText = `${nianhuaValue2.toFixed(2)}%`;
+
+            const income2 = ((10000 * tianshuValue2 / 365) * (nianhuaValue2 / 100)).toFixed(2);
+            down2H3Income_2.innerText = `${income2}元`;
+
+            // 清除输入字段
+            clearButton.click();
+        });
+
+        // 在页面加载时检查是否存在已保存的产品2数据
+        window.addEventListener('load', function () {
+            const savedProduct2Data = localStorage.getItem('product2Data');
+            if (savedProduct2Data) {
+                // 如果有保存的数据，将其解析为对象并更新界面元素
+                const product2Data = JSON.parse(savedProduct2Data);
+                goodsH3_2.innerText = product2Data.chanpin;
+                dateH5_2.innerText = `操作周期:${product2Data.tianshu}天`;
+                const nianhuaValue2 = parseFloat(product2Data.nianhua); // 解析已保存的年化收益率并转换为数字
+                down2H3Rate_2.innerText = `${nianhuaValue2.toFixed(2)}%`;
+
+                const income2 = ((10000 * product2Data.tianshu / 365) * (nianhuaValue2 / 100)).toFixed(2);
+                down2H3Income_2.innerText = `${income2}元`;
+            } else {
+                goodsH3_2.innerText = chanpinValue2;
+                dateH5_2.innerText = `操作周期:${tianshuValue2}天`;
+
+                // Display the 年化收益率 in the second <h3> element
+                down2H3Rate_2.innerText = `${nianhuaValue2.toFixed(2)}%`;
+
+                // Calculate the income and display it in the second <h3> element
+                const income2 = ((10000 * tianshuValue2 / 365) * (nianhuaValue2 / 100)).toFixed(2);
+                down2H3Income_2.innerText = `${income2}元`;
+                clearButton.click()
+            }
+        });
+
+
+        // Product 3
+        const xianshi3 = document.querySelector('.xianshi3');
+        const guanbi3 = document.querySelector('.guanbi3');
+        const box3 = document.querySelector('#box3');
+
+        xianshi3.addEventListener('click', function () {
+            box3.style.display = 'block'; // Show the box3 element
+        });
+
+        guanbi3.addEventListener('click', function () {
+            box3.style.display = 'none'; // Hide the box3 element
+        });
+
+        const chanpinInput3 = document.querySelector('.chanpin');
+        const tianshuInput3 = document.querySelector('.tianshu');
+        const nianhuaInput3 = document.querySelector('.nianhua');
+        const goodsH3_3 = document.querySelector('#box3 .goods h3');
+        const dateH5_3 = document.querySelector('#box3 .date h5');
+        const down2H3Rate_3 = document.querySelector('#box3 .down2 h3:nth-child(1)');
+        const down2H3Income_3 = document.querySelector('#box3 .down2 h3:nth-child(2)');
+        const writeProduct3Button = document.querySelector('button:nth-child(3)');
+
+        writeProduct3Button.addEventListener('click', function () {
+            const chanpinValue3 = chanpinInput3.value;
+            const tianshuValue3 = parseFloat(tianshuInput3.value);
+            const nianhuaValue3 = parseFloat(nianhuaInput3.value);
+
+            // 创建一个对象来保存产品3的数据
+            const product3Data = {
+                chanpin: chanpinValue3,
+                tianshu: tianshuValue3,
+                nianhua: nianhuaValue3
+            };
+
+            // 使用 JSON.stringify 将对象转换为 JSON 字符串并存储在 localStorage 中
+            localStorage.setItem('product3Data', JSON.stringify(product3Data));
+
+            // 更新界面元素
+            goodsH3_3.innerText = chanpinValue3;
+            dateH5_3.innerText = `操作周期:${tianshuValue3}天`;
+            down2H3Rate_3.innerText = `${nianhuaValue3.toFixed(2)}%`;
+
+            const income3 = ((10000 * tianshuValue3 / 365) * (nianhuaValue3 / 100)).toFixed(2);
+            down2H3Income_3.innerText = `${income3}元`;
+
+            // 清除输入字段
+            clearButton.click();
+        });
+
+        // 在页面加载时检查是否存在已保存的产品3数据
+        window.addEventListener('load', function () {
+            const savedProduct3Data = localStorage.getItem('product3Data');
+            if (savedProduct3Data) {
+                // 如果有保存的数据，将其解析为对象并更新界面元素
+                const product3Data = JSON.parse(savedProduct3Data);
+                goodsH3_3.innerText = product3Data.chanpin;
+                dateH5_3.innerText = `操作周期:${product3Data.tianshu}天`;
+                const nianhuaValue3 = parseFloat(product3Data.nianhua); // 解析已保存的年化收益率并转换为数字
+                down2H3Rate_3.innerText = `${nianhuaValue3.toFixed(2)}%`;
+
+                const income3 = ((10000 * product3Data.tianshu / 365) * (nianhuaValue3 / 100)).toFixed(2);
+                down2H3Income_3.innerText = `${income3}元`;
+            } else {
+                goodsH3_3.innerText = chanpinValue3;
+                dateH5_3.innerText = `操作周期:${tianshuValue3}天`;
+
+                // Display the 年化收益率 in the third <h3> element
+                down2H3Rate_3.innerText = `${nianhuaValue3.toFixed(2)}%`;
+
+                // Calculate the income and display it in the third <h3> element
+                const income3 = ((10000 * tianshuValue3 / 365) * (nianhuaValue3 / 100)).toFixed(2);
+                down2H3Income_3.innerText = `${income3}元`;
+                clearButton.click()
+            }
+        });
+
+
+        // Product 4
+        const xianshi4 = document.querySelector('.xianshi4');
+        const guanbi4 = document.querySelector('.guanbi4');
+        const box4 = document.querySelector('#box4');
+
+        xianshi4.addEventListener('click', function () {
+            box4.style.display = 'block'; // Show the box4 element
+        });
+
+        guanbi4.addEventListener('click', function () {
+            box4.style.display = 'none'; // Hide the box4 element
+        });
+
+        const chanpinInput4 = document.querySelector('.chanpin');
+        const tianshuInput4 = document.querySelector('.tianshu');
+        const nianhuaInput4 = document.querySelector('.nianhua');
+        const goodsH3_4 = document.querySelector('#box4 .goods h3');
+        const dateH5_4 = document.querySelector('#box4 .date h5');
+        const down2H3Rate_4 = document.querySelector('#box4 .down2 h3:nth-child(1)');
+        const down2H3Income_4 = document.querySelector('#box4 .down2 h3:nth-child(2)');
+        const writeProduct4Button = document.querySelector('button:nth-child(4)');
+
+        writeProduct4Button.addEventListener('click', function () {
+            const chanpinValue4 = chanpinInput4.value;
+            const tianshuValue4 = parseFloat(tianshuInput4.value);
+            const nianhuaValue4 = parseFloat(nianhuaInput4.value);
+
+            // 创建一个对象来保存产品4的数据
+            const product4Data = {
+                chanpin: chanpinValue4,
+                tianshu: tianshuValue4,
+                nianhua: nianhuaValue4
+            };
+
+            // 使用 JSON.stringify 将对象转换为 JSON 字符串并存储在 localStorage 中
+            localStorage.setItem('product4Data', JSON.stringify(product4Data));
+
+            // 更新界面元素
+            goodsH3_4.innerText = chanpinValue4;
+            dateH5_4.innerText = `操作周期:${tianshuValue4}天`;
+            down2H3Rate_4.innerText = `${nianhuaValue4.toFixed(2)}%`;
+
+            const income4 = ((10000 * tianshuValue4 / 365) * (nianhuaValue4 / 100)).toFixed(2);
+            down2H3Income_4.innerText = `${income4}元`;
+
+            // 清除输入字段
+            clearButton.click();
+        });
+
+        // 在页面加载时检查是否存在已保存的产品4数据
+        window.addEventListener('load', function () {
+            const savedProduct4Data = localStorage.getItem('product4Data');
+            if (savedProduct4Data) {
+                // 如果有保存的数据，将其解析为对象并更新界面元素
+                const product4Data = JSON.parse(savedProduct4Data);
+                goodsH3_4.innerText = product4Data.chanpin;
+                dateH5_4.innerText = `操作周期:${product4Data.tianshu}天`;
+                const nianhuaValue4 = parseFloat(product4Data.nianhua); // 解析已保存的年化收益率并转换为数字
+                down2H3Rate_4.innerText = `${nianhuaValue4.toFixed(2)}%`;
+
+                const income4 = ((10000 * product4Data.tianshu / 365) * (nianhuaValue4 / 100)).toFixed(2);
+                down2H3Income_4.innerText = `${income4}元`;
+            } else {
+                goodsH3_4.innerText = chanpinValue4;
+                dateH5_4.innerText = `操作周期:${tianshuValue4}天`;
+
+                // Display the 年化收益率 in the fourth <h3> element
+                down2H3Rate_4.innerText = `${nianhuaValue4.toFixed(2)}%`;
+
+                // Calculate the income and display it in the fourth <h3> element
+                const income4 = ((10000 * tianshuValue4 / 365) * (nianhuaValue4 / 100)).toFixed(2);
+                down2H3Income_4.innerText = `${income4}元`;
+                clearButton.click()
+            }
+        });
+
+
+
+        // 清    空
+        const clearButton = document.querySelector('button:nth-child(5)');
+
+        clearButton.addEventListener('click', function () {
+            // Clear the input field values
+            chanpinInput1.value = '';
+            tianshuInput1.value = '';
+            nianhuaInput1.value = '';
+            chanpinInput2.value = '';
+            tianshuInput2.value = '';
+            nianhuaInput2.value = '';
+            chanpinInput3.value = '';
+            tianshuInput3.value = '';
+            nianhuaInput3.value = '';
+            chanpinInput4.value = '';
+            tianshuInput4.value = '';
+            nianhuaInput4.value = '';
+        });
+
+        function getCurrentDateTime() {
+            const currentDate = new Date();
+            const daysOfWeek = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            const dayOfWeek = daysOfWeek[currentDate.getDay()]; // 获取当前星期几
+            const date = currentDate.toLocaleDateString('zh-CN'); // 获取当前日期
+
+            const timeElement = document.getElementById('time');
+            timeElement.textContent = ` ${date}${dayOfWeek}`;
+
+        }
+
+        // 当页面加载时调用该函数以显示当前日期和星期几
+        getCurrentDateTime();
+
+        // 获取表格
+        const table = document.getElementById('myTable');
+
+        // 添加粘贴事件监听器
+        table.addEventListener('paste', (event) => {
+            event.preventDefault();
+            const clipboardData = event.clipboardData || window.clipboardData;
+            const pastedData = clipboardData.getData('text');
+
+            // 将粘贴的数据拆分为行和列
+            const rows = pastedData.split('\n');
+
+            // 用于迭代每个单元格的计数器
+            let cellCounter = 0;
+
+            // 填充表格中的每个单元格
+            rows.forEach((rowData, rowIndex) => {
+                const columns = rowData.split('\t'); // 假设数据使用制表符分隔
+
+                columns.forEach((cellData, columnIndex) => {
+                    if (rowIndex < 4 && columnIndex < 3) {
+                        const cellId = `cell_${rowIndex}_${columnIndex}`;
+                        const cell = document.getElementById(cellId);
+
+                        if (cell) {
+                            cell.value = cellData;
+                            cellCounter++;
+                        }
+                    }
+                });
+            });
+        });
+        //------------------------------写入对应框--------------------------
+        function fillInputs(row) {
+            var productName = document.querySelector('.chanpin');
+            var operationDays = document.querySelector('.tianshu');
+            var annualReturn = document.querySelector('.nianhua');
+
+            var cellId = "cell_" + (row - 1) + "_";
+
+            productName.value = document.getElementById(cellId + "0").value;
+            operationDays.value = document.getElementById(cellId + "1").value;
+            annualReturn.value = document.getElementById(cellId + "2").value;
+        }
+
+        function clearInputs() {
+            var inputs = document.querySelectorAll('input');
+            inputs.forEach(function (input) {
+                input.value = '';
+            });
+        }
+
+        function handleButtonClick(row) {
+            fillInputs(row);
+            var writeBtn = document.querySelector(`button:nth-of-type(${row})`);
+            writeBtn.click();
+        }
+
+        function autoFill() {
+            for (let i = 1; i <= 4; i++) {
+                setTimeout(function () {
+                    var button = document.querySelector(`button:nth-of-type(${i})`);
+                    button.click();
+                }, i * 1000); // Adjust the delay (in milliseconds) between button clicks
+            }
+        }
+
+        //-----------------------点击1234 
+        function clickAllButtons() {
+            for (let i = 1; i <= 4; i++) {
+                handleButtonClick(i);
+            }
+        }
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+<html>
+<head>
+    <title>果考网云考试客户端</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <style type="text/css">
+
+        .style1 {
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+
+        .style2 {
+            font-size: 12px;
+            color: #000000;
+        }
+
+        .style3 {
+            font-size: 14px;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+
+        .style4 {
+            color: #8b8b8b;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .style6 {
+            font-size: 14px;
+            color: #000000;
+        }
+
+        .style8 {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        body {
+            font-size: 12px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .style9 {
+            font-size: 12px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .style10 {
+            font-size: 12px;
+            font-weight: bold;
+            color: #146fc2;
+        }
+
+        body {
+            border: 0px;
+            overflow: auto;
+        }
+
+        .styletable{
+            border: 0;padding: 0px;width: 100%;border-spacing: 0;border-collapse: collapse
+        }
+
+        .stylexht{
+            height: 55px;width: 50px;text-align: center; font-size: 16px;color: #020202;background-color: #f5f6f8
+        }
+        .stylekjmct{
+            width: 400px;text-align: center;font-size: 16px;color: #020202;background-color: #f5f6f8
+        }
+        .stylekjzzt{
+            width: 200px;text-align: center;font-size: 16px;color: #020202;background-color: #f5f6f8
+        }
+        .stylesfhgt{
+            width: 100px;text-align: center;font-size: 16px;color: #020202;background-color: #f5f6f8
+        }
+        .styleksxxt{
+            width: 100px;text-align: center;font-size: 16px;color: #020202;background-color: #f5f6f8
+        }
+        .stylekslxt{
+            width: 100px;text-align: center;font-size: 16px;color: #020202;background-color: #f5f6f8
+        }
+
+        .stylexhc{
+            height: 60px;text-align: right;font-size: 12pt;padding-right:10px;border-bottom: 1px solid #ededed;background-color: #FFFFFF
+        }
+        .stylekjmcc{
+            width: 400px;text-align: left;font-size: 12pt;padding-left:10px;border-bottom: 1px solid #ededed;background-color: #FFFFFF
+        }
+        .stylekjzzc{
+            width: 200px;text-align: left;font-size: 12pt;padding-left:10px;border-bottom: 1px solid #ededed;background-color: #FFFFFF
+        }
+        .stylesfhgc{
+            text-align: center;font-size: 12pt;padding-left:10px;border-bottom: 1px solid #ededed;background-color: #FFFFFF
+        }
+        .styleksxxc{
+            text-align: center;font-size: 12pt;border-bottom: 1px solid #ededed;background-color: #FFFFFF
+        }
+        .stylekslxc{
+            text-align: center;font-size: 12pt;border-bottom: 1px solid #ededed;background-color: #FFFFFF
+        }
+    </style>
+    <link href="commond/css.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td height="43" align="center">
+            <table width="100%" border="0" cellpadding="10" cellspacing="1" height="349">
+                <tr>
+                    <td height="290" align="center" valign="top">
+                        <div style="width:93%;height:395px;overflow:auto;SCROLLBAR-FACE-COLOR:#ffffff;margin:0" id="DIVF">
+                            <div id="CaiLIST">
+                                <table class='styletable'>
+                                    <tr>
+                                        <td class='stylexht'><b>序号</b></td>
+                                        <td class='stylekjmct'><b>课件名称</b></td>
+                                        <td class='stylekjzzt'><b>课件作者</b></td>
+                                        <td class='styleksxxt'><b>开始学习</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr id="PageF">
+        <td height="43" align="center">
+            <table width="100%" border="0" cellpadding="0" cellspacing="1" height="30">
+                <tr>
+                    <td height="30" align="center" valign="middle">
+                        <table border='0' cellpadding='5' cellspacing='1' width=100% id=table1
+                               style='border-collapse: collapse'>
+                            <tr>
+                                <td height=30 align=right style='font-size: 10pt' id="FpageInfo"><span
+                                        style="cursor:hand;" onClick="StartExm1()">首页</span> <span style="cursor:hand;"
+                                                                                                   onClick="StartExm1()">上一页</span>
+                                    <span style="cursor:hand;" onClick="StartExm1()">下一页</span> <span
+                                            style="cursor:hand;" onClick="StartExm1()">尾页</span></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<input type="hidden" name="txtCommand" size="1" id="txtCommand" value="InitCaiList">
+<input type="hidden" name="oldexmtxt" id="oldexmtxt" size="4" value="">
+<input type="button" style="VISIBILITY: hidden" ID="btnCallVB" name="btnCallVB">
+</body>
+<script language="vbscript">
+ sub ChangeStuPwd()
+	   txtCommand.value="CHANGEPWD//"
+       btnCallVB.click
+	end sub
+	sub logout()
+	   txtCommand.value="logout//"
+       btnCallVB.click
+	end sub
+ 	sub StartExm1()
+	   txtCommand.value="STARTEXM//"
+       btnCallVB.click
+	end sub
+ 	sub StartCai()
+	   txtCommand.value="STARTCAI//"
+       btnCallVB.click
+	end sub
+	sub StartPractice()
+	   txtCommand.value="STARTPRACTICE//"
+       btnCallVB.click
+	end sub
+	sub UserOpinion()
+	   txtCommand.value="USEROPINION//"
+       btnCallVB.click
+	end sub	 
+    sub END_onclick()
+       txtCommand.value="backMyTest"
+       btnCallVB.click
+    end sub
+    sub Autotest()
+    	txtCommand.value="PRACTICE//"
+       	btnCallVB.click
+    end sub
+    sub law_onchange()
+       txtCommand.value="CHANGELAWC//" + law.value
+       btnCallVB.click
+    end sub    
+    sub knowledge_onchange()
+       txtCommand.value="CHANGEKNOWLEDGEC//" + knowledge.value + "//" + law.value
+       btnCallVB.click
+    end sub
+    sub oldtest()   
+       txtCommand.value="EXAMSELECT3//" + oldexmtxt.value
+       btnCallVB.click
+    end sub  
+
+    sub btnSubmitonclick()
+       txtCommand.value="EXAMSELECT//" + lstExmlist.value
+       btnCallVB.click
+    end sub     
+    sub Back()
+ 	   txtCommand.value="BackLogin//"
+       btnCallVB.click
+ 	end sub
+	sub startStudy(stid)
+	   txtCommand.value="StartStady//" + stid
+       btnCallVB.click
+	end sub	
+	sub skipS(stid)
+	   txtCommand.value="SkipPage//" + cstr(stid)
+       btnCallVB.click
+	end sub
+    sub btnCallVB_onclick()
+
+    end sub  
+	sub StartExam()
+	   txtCommand.value="STARTEXAM//"
+       btnCallVB.click
+	end sub
+	sub startStudy(stid)
+	   txtCommand.value="StartStady//" + stid
+       btnCallVB.click
+	end sub	
+	sub skipS(stid)
+	   txtCommand.value="SkipPage//" + cstr(stid)
+       btnCallVB.click
+	end sub
+	sub setserver()
+	   txtCommand.value="SETSERVER//"
+       btnCallVB.click
+	end sub    
+    sub startexm()
+        selectvalue=lstExmlist.options(lstExmlist.selectedIndex).value
+        txtCommand.value="EXAMSELECT//" + selectvalue
+        btnCallVB.click
+    end sub
+  	sub window_onload()
+ 	   if window.screen.height -760>=0 then 
+ 	      document.all("DIVF").style.height=window.screen.height-200
+ 	   end if
+ 	end sub
+
+</script>
+</html>

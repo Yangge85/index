@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大象国际产品收益计算器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 微软雅黑;
+            user-select: none;
+            box-sizing: border-box;
+
+        }
+
+        body {
+            max-width: 380px;
+            background-color: #f4f5f6;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .item {
+            margin-bottom: 10px;
+
+        }
+
+        .label {
+            width: 100px;
+            display: inline-block;
+            font-size: 16px;
+            background-color: #f8700f;
+            border-radius: 0 10px 0 10px;
+            text-align: center;
+            box-shadow: 10px 15px 8px 3px rgba(0, 0, 0, 0.7);
+            margin-bottom: 2px;
+            /* border: 1px solid rgba(10, 248, 74, 0.962); */
+        }
+
+        .input {
+            flex: 1;
+            width: 100%;
+            height: 30px;
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 10px;
+            box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.7) inset;
+        }
+
+        .textarea {
+            width: 100%;
+            flex: 1;
+            border: 1px solid #ccc;
+            padding: 5px;
+            font-size: 16px;
+            height: 100px;
+            resize: none;
+            box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            box-shadow: 2px 5px 10px 1px rgba(255, 255, 255, 0.7) inset;
+        }
+
+        .calculate-button {
+            width: 70%;
+            background-color: #1856e7;
+            color: #fff;
+            padding: 10px 0;
+            border-radius: 10px;
+            font-size: 30px;
+            margin-top: 0;
+            box-shadow: 2px 5px 10px 1px rgba(229, 206, 206, 0.7) inset;
+        }
+
+        .clear-button {
+            flex: 1;
+            background-color: #df1212;
+            color: #000000;
+            padding: 10px 0;
+            border-radius: 10px;
+            font-size: 30px;
+            margin-top: 0;
+            box-shadow: 2px 5px 10px 1px rgba(255, 255, 255, 0.7) inset;
+            border-bottom: 2px solid #000;
+            border-right: 3px solid #000;
+        }
+
+        .copy-button {
+            top: 10px;
+            width: 100%;
+            height: 80px;
+            align-items: center;
+            font-size: 30px;
+            background-color: #1ce523;
+            border-radius: 10px;
+            box-shadow: 2px 5px 10px 1px rgba(255, 255, 255, 0.7) inset;
+
+        }
+
+        /* .input[disabled] {
+            background-color: #f5f5f5;
+        } */
+
+        .earnings-container {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            justify-content: space-evenly;
+            align-items: center;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+
+            /* 向下移动20px */
+        }
+
+        .earnings {
+            font-size: 20px;
+
+            font-weight: 10px;
+            color: red;
+
+            /* margin-right: 10px; */
+            text-align: center;
+            /* margin-left: 10%; */
+        }
+
+        .earnings-number {
+            font-size: 20px;
+
+            color: red;
+
+            text-align: center;
+
+        }
+
+        /* 自定义提示框样式 */
+        .custom-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            font-size: 16px;
+
+        }
+
+        div a {
+            color: #0f0;
+            width: 33.3%;
+            height: 50px;
+            background-color: #0026ff;
+            font-size: 12px;
+            text-decoration: none;
+            display: inline-block;
+
+            margin-right: -6px;
+            margin-top: 2px;
+            text-align: center;
+            line-height: 50px;
+
+        }
+
+        /* 外部链接布局 */
+
+        .lianjie {
+            display: flex;
+            justify-content: space-evenly;
+            margin-left: -4px;
+        }
+
+        a:hover {
+            background-color: #5179e4;
+        }
+
+        .textarea {
+            width: 100%;
+            height: 100px;
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, #00f, #f00, #0f0, #00f);
+            border-image-slice: 1;
+            animation: colorfulBorder 5s linear infinite;
+        }
+
+        @keyframes colorfulBorder {
+            0% {
+                border-image-source: linear-gradient(45deg, red, orange, yellow, green);
+            }
+
+            25% {
+                border-image-source: linear-gradient(45deg, #f00, #0f0, #00f, #f00);
+            }
+
+            50% {
+                border-image-source: linear-gradient(45deg, #0f0, #00f, #f00, #0f0);
+            }
+
+            75% {
+                border-image-source: linear-gradient(45deg, #00f, #f00, #0f0, #00f);
+            }
+
+            100% {
+                border-image-source: linear-gradient(45deg, #f00, #0f0, #00f, #f00);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 产品名称输入框 -->
+        <div class="item">
+            <label class="label">产品名称：</label>
+            <input id="productName" class="input" placeholder="请输入产品名称" />
+        </div>
+        <!-- 收益率输入框 -->
+        <div class="item">
+            <label class="label">收益率：</label>
+            <input id="profitRate" class="input" type="number" placeholder="请输入收益率" />
+        </div>
+        <!-- 天数输入框 -->
+        <div class="item">
+            <label class="label">天数：</label>
+            <input id="days" class="input" type="number" placeholder="请输入天数" />
+        </div>
+        <!-- 计算和清空按钮 -->
+        <div class="button-container">
+
+            <button onclick="clearFields()" class="button clear-button">清空</button>
+            <button onclick="calculate()" class="button calculate-button">计算</button>
+        </div>
+        <!-- 预期收益显示 -->
+        <div class="earnings-container">
+            <span class="earnings">万元预期收益：</span>
+            <span id="earnings" class="earnings-number">0 元</span>
+        </div>
+        <!-- 微信复制文本框和复制按钮 -->
+        <div class="item">
+            <label class="label"> </label>
+            <textarea id="copyText" class="textarea"></textarea>
+            <button onclick="copyToWeChat()" class="button copy-button"><b>一键复制到微信</b></button>
+        </div>
+        <div class="lianjie">
+            <a href="/YGstudy/大象新闻/index.html" title="直接保存图片转发群" target="_blank"
+                style="border-radius: 5px 0 0 5px;">大象新闻</a>
+            <a href="https://m.1001dx.cn/user" title="登录大象国际网页客户端" target="_blank">大象网页端登录</a>
+            <a href="./大象网页版计算.html" title="" target="_blank"
+                style="border-radius: 0 5px 5px 0;color: #f00;">网页产品计算器</a>
+        </div>
+
+        <!-- 自定义提示框 -->
+        <div id="customPopup" class="custom-popup">
+            高级提示内容在这里
+        </div>
+
+    </div>
+
+    <script>
+        function calculate() {
+            // 计算收益
+            const rate = parseFloat(document.getElementById('profitRate').value);
+            const day = parseInt(document.getElementById('days').value);
+            const productName = document.getElementById('productName').value;
+            if (!isNaN(rate) && !isNaN(day)) {
+                const principal = 10000; // 本金
+                const profit = (principal * rate * day) / (100 * 365);
+                const earningsElement = document.getElementById('earnings');
+                earningsElement.innerText = profit.toFixed(2) + ' 元';
+
+                // 构建微信复制内容
+                const copyTextElement = document.getElementById('copyText');
+                copyTextElement.value = `
+                新出${day}天理财产品，
+                名称：${productName},
+                年化收益率：${rate}%,
+                入伙${principal}到期收益${profit.toFixed(2)}元。
+                还有浮动收益预期~_~`;
+            } else {
+                const earningsElement = document.getElementById('earnings');
+                earningsElement.innerText = '请输入数据';
+                const copyTextElement = document.getElementById('copyText');
+                copyTextElement.value = '';
+            }
+        }
+
+        function clearFields() {
+            // 清空输入
+            document.getElementById('productName').value = '';
+            document.getElementById('profitRate').value = '';
+            document.getElementById('days').value = '';
+            document.getElementById('earnings').innerText = '0 元';
+            document.getElementById('copyText').value = '';
+        }
+
+        function copyToWeChat() {
+            const copyTextElement = document.getElementById('copyText');
+            const copyText = copyTextElement.value;
+
+
+        }
+        function showCustomPopup(message) {
+            const customPopup = document.getElementById('customPopup');
+            customPopup.innerText = message;
+            customPopup.style.display = 'block';
+
+            // 延迟一段时间后隐藏提示框
+            setTimeout(function () {
+                customPopup.style.display = 'none';
+            }, 3000); // 3秒后隐藏
+        }
+
+        function copyToWeChat() {
+            const copyTextElement = document.getElementById('copyText');
+            const copyText = copyTextElement.value;
+
+            if (copyText && document.execCommand) {
+                const textArea = document.createElement('textarea');
+                textArea.value = copyText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                // 显示高级提示框
+                showCustomPopup('已复制到剪贴板');
+            } else {
+                showCustomPopup('请注意，复制失败');
+            }
+        }
+    </script>
+</body>
+
+</html>
