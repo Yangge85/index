@@ -47,20 +47,18 @@
 
         }
 
-        .time::before {
-            content: '';
-            position: absolute;
-            bottom: 50%;
-            left: 100%;
-            /* 三角形靠右 */
-            transform: translateY(50%);
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 15px solid #ed0b0b;
-            /* 红色三角形，指向右 */
-        }
+     .time::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 150px; /* 通过增大这个值来向右平移三角形 */
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 30px solid red; /* 增加 border-left 宽度来拉长三角形 */
+}
 
         .shenti {
             margin-top: 100px;
@@ -147,7 +145,7 @@
 
 <body>
     <header>
-        <h1 style="width: auto; height: 60px; line-height: 50px;">阳哥网页小程序制作分享网</h1>
+        <h1 style="width: auto; height: 60px; line-height: 50px;">YGG学前端</h1>
         <div class="time">
             <span>YGG&reg; &nbsp;</span>
         </div>
@@ -203,19 +201,19 @@
         <!-- 成果展示 -->
         <div class="section">
             <h2>成果展示</h2>
-            <a class="link" href="/YGstudy/排班表/排班表.html">排班表</a>
-            <a class="link" href="/YGstudy/车牌生成/index.html">车牌生成</a>
-            <a class="link" href="/YGstudy/股票收益分成/gupiaoshouyi/股票收益分成.html">股票收益分成</a>
+            <a class="link" href="/index/YGstudy/排班表/排班表.html>排班表</a>
+            <a class="link" href="/index/YGstudy/车牌生成/index.html">车牌生成</a>
+            <a class="link" href="/index/YGstudy/股票收益分成/gupiaoshouyi/股票收益分成.html">股票收益分成</a>
             <a class="link" href="/YGstudy/大象理财产品计算器/大象理财产品计算器.html">大象理财产品计算器</a>
-            <a class="link" href="/YGstudy/大象新闻/index.html">大象新闻</a>
-            <a class="link" href="/YGstudy/生男生女/生男生女.html">生男生女</a>
-            <a class="link" href="/YGstudy/双色球/双色球.html">双色球</a>
-            <a class="link" href="/YGstudy/水泥厂的孩子们/index.html">水泥厂的孩子们</a>
-            <a class="link" href="/YGstudy/大学的美好时光/index.html">大学的美好时光</a>
-            <a class="link" href="/YGstudy/儿歌点播/index.html">儿歌点播</a>
-            <a class="link" href="/YGstudy/抽奖/choujiang/index.html">抽奖</a>
-            <a class="link" href="/YGstudy/杜村/ducun.html">零件加工计算器</a>
-            <a class="link" href="/YGstudy/课程表/课程表.html">课程表</a>
+            <a class="link" href="/index/YGstudy/大象新闻/index.html">大象新闻</a>
+            <a class="link" href="/index/YGstudy/生男生女/生男生女.html">生男生女</a>
+            <a class="link" href="/index/YGstudy/双色球/双色球.html">双色球</a>
+            <a class="link" href="/index/YGstudy/水泥厂的孩子们/index.html">水泥厂的孩子们</a>
+            <a class="link" href="/index/YGstudy/大学的美好时光/index.html">大学的美好时光</a>
+            <a class="link" href="/index/YGstudy/儿歌点播/index.html">儿歌点播</a>
+            <a class="link" href="/index/YGstudy/抽奖/choujiang/index.html">抽奖</a>
+            <a class="link" href="/index/YGstudy/杜村/ducun.html">零件加工计算器</a>
+            <a class="link" href="/index/YGstudy/课程表/课程表.html">课程表</a>
 
         </div>
 
