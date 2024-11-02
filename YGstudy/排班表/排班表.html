@@ -11,36 +11,30 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            overflow-x: hidden;
-            /* 禁止水平滚动 */
+            overflow-x: hidden; /* 禁止水平滚动 */
         }
 
         h1 {
             text-align: center;
-            font-size: 1.5rem;
-            /* 调整标题字体大小 */
+            font-size: 1.5rem; /* 调整标题字体大小 */
             margin: 20px 0;
         }
 
         .container {
-            width: 95%;
-            /* 页面宽度缩小5% */
-            max-width: 950px;
-            /* 确保在大屏幕上也缩小 */
+            width: 95%; /* 页面宽度缩小5% */
+            max-width: 950px; /* 确保在大屏幕上也缩小 */
             margin: 0 auto;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* 日期选择部分靠右对齐 */
         .date-container {
             text-align: right;
             margin-bottom: 20px;
         }
 
         label {
-            font-size: 1rem;
-            /* 调整选择日期标签字体大小 */
+            font-size: 1rem; /* 调整选择日期标签字体大小 */
         }
 
         input[type="date"] {
@@ -50,24 +44,16 @@
         .schedule {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.9rem;
-            /* 调整表格字体大小 */
-            table-layout: fixed;
-            /* 防止表格超出边界 */
+            font-size: 0.9rem; /* 调整表格字体大小 */
+            table-layout: fixed; /* 防止表格超出边界 */
         }
 
         .schedule th,
         .schedule td {
             border: 1px solid #ddd;
             padding: 8px;
-            text-align: center;
-        }
-
-        /* 缩小日期列的宽度 */
-        .schedule th.date-col,
-        .schedule td.date-col {
-            width: 90px;
-            /* 设置固定宽度 */
+            text-align: center; /* 居中对齐 */
+            white-space: nowrap; /* 防止日期超出格子 */
         }
 
         .schedule th {
@@ -79,11 +65,34 @@
             font-weight: bold;
         }
 
+        .badge-container {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .badge-day {
+            background-color: blue; /* 初几的蓝底 */
+            color: white;           /* 白字 */
+            padding: 2px 5px;       /* 内边距 */
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            font-size: 0.7rem;      /* 字体大小减小 */
+            margin-right: 0; /* 去除左右空隙 */
+        }
+
+        .badge-market {
+            background-color: red; /* 集市的红底 */
+            color: white;          /* 白字 */
+            padding: 2px 5px;      /* 内边距 */
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            font-size: 0.7rem;
+        }
+
         .schedule tr:nth-child(even) {
             background-color: #f9f9f9;
         }
 
-        /* 在小屏幕上自适应 */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.2rem;
@@ -95,12 +104,6 @@
             .schedule td {
                 font-size: 0.8rem;
                 padding: 5px;
-            }
-
-            /* 缩小日期列的宽度在移动端 */
-            .schedule th.date-col,
-            .schedule td.date-col {
-                width: 70px;
             }
         }
     </style>
@@ -125,6 +128,7 @@
                     <th>主班</th>
                     <th>副班</th>
                     <th>副班</th>
+                    <th>备注</th> <!-- 添加备注列 -->
                 </tr>
             </thead>
             <tbody></tbody>
@@ -133,17 +137,34 @@
 
     <script>
         const persons = [
-            ['杜　阳', '左平周', '王勇伟'],  // 9月1日，杜阳用全角空格调整宽度
-            ['王勇伟', '杜　阳', '左平周'],  // 9月2日
-            ['左平周', '王勇伟', '杜　阳']   // 9月3日
+            ['杜　阳', '左平周', '王勇伟'],
+            ['王勇伟', '杜　阳', '左平周'],
+            ['左平周', '王勇伟', '杜　阳']
         ];
 
         const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
 
-        // 计算两个日期之间的天数差
         function daysBetween(startDate, endDate) {
             const oneDay = 24 * 60 * 60 * 1000; // 一天的毫秒数
             return Math.floor((endDate - startDate) / oneDay);
+        }
+
+        function lunarDateIndicator(lunarDay) {
+            const heYanJiDays = [2, 12, 22, 7, 17, 27];
+            const beiZhaoJiDays = [4, 14, 24, 9, 19, 29];
+
+            let indicator = '';
+            if (heYanJiDays.includes(lunarDay)) {
+                indicator = `<span class="badge-container">
+                                <span class="badge-day">初${lunarDay}</span><span class="badge-market">河沿集</span>
+                             </span>`;
+            }
+            if (beiZhaoJiDays.includes(lunarDay)) {
+                indicator = `<span class="badge-container">
+                                <span class="badge-day">初${lunarDay}</span><span class="badge-market">北沼集</span>
+                             </span>`;
+            }
+            return indicator;
         }
 
         function generateSchedule(startDate) {
@@ -170,6 +191,10 @@
                 const isWeekend = currentDate.getDay() === 0 || currentDate.getDay() === 6;
                 const dateClass = isWeekend ? 'weekend' : '';
 
+                // 获取农历标志
+                const lunarDay = currentDate.getDate(); // 假设当前日期就是农历日期
+                const indicator = lunarDateIndicator(lunarDay);
+
                 // 添加一行到表格
                 const rowHTML = `
                     <tr>
@@ -178,6 +203,7 @@
                         <td>${primary}</td>
                         <td>${secondary}</td>
                         <td>${tertiary}</td>
+                        <td>${indicator}</td> <!-- 将标志放在备注列 -->
                     </tr>
                 `;
 
